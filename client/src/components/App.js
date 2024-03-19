@@ -1,8 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Header from "./Header";
+import Home from "./Home";
+import CarPage from "./CarPage";
+import LoginPage from "./LoginPage";
 
 function App() {
-  return <h1>Project Client</h1>;
+return (
+  <Router>
+    <div>
+      <Header />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/cars" component={CarPage} />
+        <Route path="/login" component={LoginPage} />
+      </Switch>
+    </div>
+  </Router>
+);
 }
 
 export default App;
