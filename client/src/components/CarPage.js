@@ -1,16 +1,12 @@
+// CarPage.js
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
 import CarList from './CarList';
-import CarDetailPage from './CarDetailPage';
 
-const CarPage = () => {
+function CarPage() {
   return (
     <div>
-      <h2>Car Page</h2>
-      <Switch>
-        <Route exact path="/car" component={CarList} />
-        <Route path="/car/:id" component={CarDetailPage} />
-      </Switch>
+      <h1>Car Page</h1>
+      <CarList />
     </div>
   );
 }

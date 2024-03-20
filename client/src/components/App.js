@@ -1,10 +1,10 @@
 // App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from './Header';
-import Home from './Home';
-import CarPage from './CarPage';
-import Login from './Login';
+import Header from './Header'; // Adjusted
+import Home from './Home'; // Adjusted
+import CarPage from './CarPage'; // Adjusted
+import Login from './Login'; // Adjusted
 
 const App = () => {
   return (
