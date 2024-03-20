@@ -1,59 +1,71 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
-import { useHistory } from 'react-router-dom';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useHistory } from 'react-router-dom'; 
 
-const SignUp = () => {
-  const history = useHistory();
-
-  // When the form is submitted, I'll send the form values to the backend
-  const handleSubmit = async (values, actions) => {
-    try {
-      // I'm using a POST request to send the form data to the backend's signup endpoint
-      const response = await fetch('/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      });
-
-      if (response.ok) {
-        // If signup is successful, I might redirect to the login page for the user to log in with their new credentials
-        history.push('/login');
-      } else {
-        // If the backend responds with an error, I'll handle it here
-        console.error('Signup failed.');
-      }
-    } catch (error) {
-      // If there's a network or other error, I'll catch and handle it here
-      console.error('There was an error during signup', error);
-    } finally {
-      // I'm ensuring the form is no longer in the submitting state
-      actions.setSubmitting(false);
+const SignUp = ({ onSignUp }) => {
+  const navigate = useHistory(); // Initialize the navigate function
+  const validate = values => {
+    let errors = {};
+    if (!values.email) {
+      errors.email = 'Email is required';
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+    ) {
+      errors.email = 'Invalid email address';
     }
+    if (!values.username) {
+      errors.username = 'Username is required';
+    }
+    if (!values.password) {
+      errors.password = 'Password is required';
+    }
+    return errors;
   };
 
   return (
-    <div>
+    <div className="signup-container">
       <h2>Sign Up</h2>
       <Formik
-        initialValues={{ username: '', password: '' }}
-        onSubmit={handleSubmit}
+        initialValues={{ email: '', username: '', password: '' }}
+        validate={validate}
+        onSubmit={(values, { setSubmitting }) => {
+          // Here we'll simulate the sign-up process
+          setTimeout(() => {
+            console.log('User signed up:', values);
+            onSignUp(values); // Assuming onSignUp is a prop function that handles the sign-up logic
+            setSubmitting(false);
+            navigate.push('/login-success'); // Use history.push to navigate
+          }, 500); // Simulate a server response delay
+        }}
       >
         {({ isSubmitting }) => (
           <Form>
-            <label htmlFor="username">Username:</label>
-            <Field id="username" name="username" placeholder="Choose a username" />
-
-            <label htmlFor="password">Password:</label>
-            <Field id="password" name="password" type="password" placeholder="Create a password" />
-
-            <button type="submit" disabled={isSubmitting}>Sign Up</button>
+            <div className="input-group">
+              <label htmlFor="email">Email:</label>
+              <Field type="email" name="email" />
+              <ErrorMessage name="email" component="div" className="error-message" />
+            </div>
+            <div className="input-group">
+              <label htmlFor="username">Username:</label>
+              <Field type="text" name="username" />
+              <ErrorMessage name="username" component="div" className="error-message" />
+            </div>
+            <div className="input-group">
+              <label htmlFor="password">Password:</label>
+              <Field type="password" name="password" />
+              <ErrorMessage name="password" component="div" className="error-message" />
+            </div>
+            <button type="submit" disabled={isSubmitting}>
+              Sign Up
+            </button>
           </Form>
         )}
       </Formik>
     </div>
   );
+};
+SignUp.defaultProps = {
+  onSignUp: () => console.warn('onSignUp not provided!'),
 };
 
 export default SignUp;

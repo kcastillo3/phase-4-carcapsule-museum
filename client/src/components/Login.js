@@ -1,54 +1,49 @@
-// Login.js
-import React, { useState } from 'react';
-import { Formik, Form, Field } from 'formik';
-import { useHistory, Link } from 'react-router-dom';
-import SignUp from './SignUp';
-import UserAccount from './UserAccount';
-import Logout from './Logout';
+import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Link, useHistory } from 'react-router-dom'; 
 
-const Login = () => {
-  const [isAuth, setIsAuth] = useState(false); // Authentication state
+const Login = ({ onLogin }) => {
   const history = useHistory();
-
-  // If the user is authenticated, show the UserAccount component
-  if (isAuth) {
-    return <UserAccount />;
-  }
-
-  // Function to handle form submission for login
-  const handleLoginSubmit = async (values, { setSubmitting }) => {
-    try {
-      const response = await fetch('/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      });
-
-      if (response.ok) {
-        // Simulating successful login
-        setIsAuth(true); // Update the state to reflect that the user is logged in
-      } else {
-        console.error('Login failed.');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
+  const validate = values => {
+    let errors = {};
+    if (!values.username) {
+      errors.username = 'Username is required';
     }
-    setSubmitting(false); // Reset the submitting state
+    if (!values.password) {
+      errors.password = 'Password is required';
+    }
+    return errors;
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
       <Formik
         initialValues={{ username: '', password: '' }}
-        onSubmit={handleLoginSubmit}
+        validate={validate}
+        onSubmit={(values, { setSubmitting }) => {
+          // Simulate a successful login after some validations or API call
+          console.log('Login attempted with:', values);
+          setTimeout(() => {
+            // Assuming the login is successful
+            console.log('Login successful:', values);
+            setSubmitting(false);
+            history.push('/login-success'); // Redirect to the login-success page
+          }, 500); // Simulate an asynchronous operation delay
+        }}
       >
         {({ isSubmitting }) => (
           <Form>
-            <Field name="username" placeholder="Username" />
-            <Field name="password" type="password" placeholder="Password" />
+            <div className="input-group">
+              <label htmlFor="username">Username:</label>
+              <Field type="text" name="username" />
+              <ErrorMessage name="username" component="div" className="error-message" />
+            </div>
+            <div className="input-group">
+              <label htmlFor="password">Password:</label>
+              <Field type="password" name="password" />
+              <ErrorMessage name="password" component="div" className="error-message" />
+            </div>
             <button type="submit" disabled={isSubmitting}>
               Login
             </button>
@@ -56,12 +51,11 @@ const Login = () => {
         )}
       </Formik>
       <p>
-        Don't have an account? 
-        <Link to="/signup">Sign Up</Link> {/* Link to the signup route */}
+        Don’t have a Login? <Link to="/signup">Sign Up!</Link>
       </p>
-      {/* The Logout button is shown when the user is logged in, which is handled within the UserAccount component */}
     </div>
   );
 };
 
 export default Login;
+
