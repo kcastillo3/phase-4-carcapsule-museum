@@ -1,8 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './Header'; // Adjusted
+import Home from './Home'; // Adjusted
+import CarPage from './CarPage'; // Adjusted
+import Login from './Login'; // Adjusted
 
-function App() {
-  return <h1>Project Client</h1>;
+const App = () => {
+  return (
+    <Router>
+      <div className="App">
+        {/* Header component */}
+        <Header />
+        {/* Routes */}
+        <Switch>
+          {/* Home route */}
+          <Route exact path="/" component={Home} />
+          {/* Car Page route */}
+          <Route path="/car" component={CarPage} />
+          {/* Login route */}
+          <Route path="/login" component={Login} />
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
