@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import CarList from './CarList';
-import CarDetailPage from './CarDetailPage';
+
 
 const CarPage = () => {
   return (
@@ -9,7 +9,7 @@ const CarPage = () => {
       <h2>Car Page</h2>
       <Switch>
         <Route exact path="/car" component={CarList} />
-        <Route path="/car/:id" component={CarDetailPage} />
+        {/* You can add other routes for specific car details if needed */}
       </Switch>
     </div>
   );
