@@ -26,3 +26,7 @@ body {
   width: 100%;
   align-items: center;
 }
+
+.navbar ul li {
+  list-style: none;
+}
