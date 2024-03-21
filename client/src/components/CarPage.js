@@ -1,18 +1,13 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import CarList from './CarList';
+// CarPage.js
+import React from 'react'
+import CarList from './CarList'
 
-
-const CarPage = () => {
+function CarPage() {
   return (
     <div>
-      <h2>Car Page</h2>
-      <Switch>
-        <Route exact path="/car" component={CarList} />
-        {/* You can add other routes for specific car details if needed */}
-      </Switch>
+      <CarList />
     </div>
-  );
+  )
 }
 
-export default CarPage;
+export default CarPage

@@ -1,16 +1,20 @@
 import React from 'react';
 
-const ReviewList = ({ reviews }) => {
+  const ReviewList = ({ reviews }) => {
+  
   return (
     <div>
-      <h4>Reviews:</h4>
+      <h3>Reviews</h3>
       <ul>
-        {reviews.map(review => (
-          <li key={review.id}>{review.content}</li>
+        {reviews.map((review, index) => (
+          <li key={index}>
+            <strong>{review.name}</strong> - {review.email}<br />
+            {review.review}
+          </li>
         ))}
       </ul>
     </div>
   );
-}
+};
 
 export default ReviewList;
