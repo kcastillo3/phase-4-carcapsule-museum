@@ -1,11 +1,13 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Link, useHistory } from 'react-router-dom'; 
+import { useHistory, Redirect } from 'react-router-dom';
 
-const Login = ({ onLogin }) => {
+const Login = ({ onLogin, isLoggedIn }) => {
   const history = useHistory();
+  
   const validate = values => {
     let errors = {};
+    // Basic validation logic
     if (!values.username) {
       errors.username = 'Username is required';
     }
@@ -15,6 +17,11 @@ const Login = ({ onLogin }) => {
     return errors;
   };
 
+  // If the user is already logged in, redirect them to the home page or dashboard
+  if (isLoggedIn) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div className="login-container">
       <h2>Login</h2>
@@ -22,14 +29,12 @@ const Login = ({ onLogin }) => {
         initialValues={{ username: '', password: '' }}
         validate={validate}
         onSubmit={(values, { setSubmitting }) => {
-          // Simulate a successful login after some validations or API call
           console.log('Login attempted with:', values);
-          setTimeout(() => {
-            // Assuming the login is successful
-            console.log('Login successful:', values);
-            setSubmitting(false);
-            history.push('/login-success'); // Redirect to the login-success page
-          }, 500); // Simulate an asynchronous operation delay
+          // Here, we would typically validate the credentials against our backend
+          // For now, we'll assume the credentials are valid and proceed to log in
+          onLogin(); // Call the onLogin function passed as a prop
+          setSubmitting(false);
+          history.push('/login-success'); // Navigate to a success page or dashboard
         }}
       >
         {({ isSubmitting }) => (
@@ -50,9 +55,6 @@ const Login = ({ onLogin }) => {
           </Form>
         )}
       </Formik>
-      <p>
-        Don’t have a Login? <Link to="/signup">Sign Up!</Link>
-      </p>
     </div>
   );
 };

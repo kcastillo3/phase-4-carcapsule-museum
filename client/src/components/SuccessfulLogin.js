@@ -5,7 +5,7 @@ const SuccessfulLogin = () => {
   const history = useHistory(); // Renamed for clarity
 
   const handleRedirect = () => {
-    history.push('/car'); // Corrected to use history.push and ensure the path matches your route configuration
+    history.push('/car'); // Corrected to use history.push and ensure the path matches our route configuration
   };
 
   return (

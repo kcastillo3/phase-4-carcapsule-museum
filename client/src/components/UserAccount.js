@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import Logout from './Logout'; // Import Logout component
 
-const UserAccount = () => {
+const UserAccount = ({ isLoggedIn, onLogout }) => {
   const history = useHistory();
 
-  // Define the logout logic
-  const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn'); // Clear the logged-in state
-    history.push('/login'); // Navigate back to the login page
+  useEffect(() => {
+    // Redirect to the login page if not logged in
+    if (!isLoggedIn) {
+      history.push('/login');
+    }
+  }, [isLoggedIn, history]);
+
+  // Handle logout action
+  const handleLogoutClick = () => {
+    onLogout();
   };
 
   return (
     <div className="user-account-container">
       <h2>User Account</h2>
-      {/* Pass handleLogout as onLogout to the Logout component */}
-      <Logout onLogout={handleLogout} />
+      {/* This button calls the function that changes isLoggedIn state */}
+      <button onClick={handleLogoutClick}>Logout</button>
     </div>
   );
 };

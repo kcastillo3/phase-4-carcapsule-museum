@@ -1,16 +1,15 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useHistory } from 'react-router-dom'; 
+import { useHistory } from 'react-router-dom';
 
 const SignUp = ({ onSignUp }) => {
-  const navigate = useHistory(); // Initialize the navigate function
+  const history = useHistory();
+
   const validate = values => {
     let errors = {};
     if (!values.email) {
       errors.email = 'Email is required';
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-    ) {
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
       errors.email = 'Invalid email address';
     }
     if (!values.username) {
@@ -29,13 +28,11 @@ const SignUp = ({ onSignUp }) => {
         initialValues={{ email: '', username: '', password: '' }}
         validate={validate}
         onSubmit={(values, { setSubmitting }) => {
-          // Here we'll simulate the sign-up process
-          setTimeout(() => {
-            console.log('User signed up:', values);
-            onSignUp(values); // Assuming onSignUp is a prop function that handles the sign-up logic
-            setSubmitting(false);
-            navigate.push('/login-success'); // Use history.push to navigate
-          }, 500); // Simulate a server response delay
+          // Assumes validation against the backend and successful account creation
+          console.log('User signed up:', values);
+          onSignUp(); // This would handle the backend signup and also log the user in
+          setSubmitting(false);
+          history.push('/login-success'); // Direct users to the success message page -- this will change once we have backend set up
         }}
       >
         {({ isSubmitting }) => (
@@ -64,8 +61,6 @@ const SignUp = ({ onSignUp }) => {
     </div>
   );
 };
-SignUp.defaultProps = {
-  onSignUp: () => console.warn('onSignUp not provided!'),
-};
 
 export default SignUp;
+
