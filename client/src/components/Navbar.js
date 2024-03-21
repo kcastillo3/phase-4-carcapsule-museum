@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import '../index.css'
 
 const Navbar = ({ isLoggedIn }) => {
   return (
@@ -19,7 +20,7 @@ const Navbar = ({ isLoggedIn }) => {
         )}
       </ul>
     </nav>
-  );
+  )
 }
 
-export default Navbar;
+export default NavBar;
