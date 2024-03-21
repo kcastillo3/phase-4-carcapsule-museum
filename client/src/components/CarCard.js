@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const CarCard = ({ car }) => {
   return (
-    <div>
+    <div className="car-card">
       <h4>{car.make} {car.model}</h4>
-      <Link to={`/car/${car.id}`}>View Details</Link>
+      <img src={car.imageUrl} alt={`${car.make} ${car.model}`} />
+      <a href={`/car/${car.id}`}>View Details</a>
     </div>
   );
 }
