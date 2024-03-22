@@ -1,6 +1,7 @@
 .app {
   /* Other styles for your app */
   /* background-image: url('https://res.cloudinary.com/doyp4tk82/image/upload/v1711090667/Untitled_design_hznw9p.png'); */
+  background-color: yellow;
   background-size: cover; /* Fit the background image within the container */
   background-position: center; /* Center the background image */
   background-repeat: repeat; /* Repeat the background image */
@@ -8,7 +9,8 @@
 
 
 .welcome-message {
-  margin-top:40px; /* Adjust the margin-top value as needed to move it down */
+  background-color: blue;
+  margin-top:60px; /* Adjust the margin-top value as needed to move it down */
   color: white;
   font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
 }
@@ -66,7 +68,7 @@ main {
 
 /* Home css */
 .home-container {
-  max-width: 1250px; /* Adjust the maximum width as needed */
+  max-width: 1100px; /* Adjust the maximum width as needed */
   height: 900px;
   margin: 0 auto; /* Center the container horizontally */
   text-align: center; /* Center-align the content */
@@ -84,6 +86,10 @@ main {
 
 .home-container p {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
 }
 
 .museum-image {
@@ -103,8 +109,12 @@ main {
 .second-paragraph {
   background-color: white;
   color: blue;
+  max-width: 600px;
+  border-radius: 5px;
+  padding: 10px; /* Add padding for better visual appearance */
   transition: background-color 0.3s, color 0.3s; /* Add transition effect */
-  border-radius:5px;
+  text-align: center; /* Center text horizontally */
+  margin: 0 auto; /* Center the message box horizontally */
 }
 
 /* Hover effect */
@@ -140,7 +150,8 @@ main {
   border: 1px solid #ccc; /* Change the border width as needed */
   border-radius: 0px; /* Add border radius for rounded corners if desired */
   justify-items: center; 
-  background-image: url('https://as1.ftcdn.net/v2/jpg/04/16/70/18/1000_F_416701849_ThbORgJnpuoIE7TWKqXZ7x3atFTKoBI8.jpg');
+  /* background-image: url('https://as1.ftcdn.net/v2/jpg/04/16/70/18/1000_F_416701849_ThbORgJnpuoIE7TWKqXZ7x3atFTKoBI8.jpg'); */
+  background-color: rgb(14, 14, 83);
   background-size: 25%; /* Zoom out the background image */
   background-position: center; /* Center the background image */
   background-repeat: repeat; /* Repeat the background image */
