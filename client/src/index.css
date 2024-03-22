@@ -91,10 +91,11 @@ header {
 
 /* navbar css */
 .navbar {
-  background-color: #333; /* Set background color for the navbar */
-  list-style-type: none; /* Remove default list style */
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
+  position: fixed;
+  top: 50px; /* Adjust this value as needed */
+  left: 20;
+  right: 0;
+  z-index: 1000; /* Ensure navbar stays on top of other content */
 }
 
 .navbar li {
@@ -121,6 +122,8 @@ header {
   text-decoration: none;
   color: black;
 }
+
+
 
 
 
