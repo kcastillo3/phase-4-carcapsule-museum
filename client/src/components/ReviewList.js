@@ -16,7 +16,7 @@ const ReviewList = ({ reviews, onReply }) => {
             <button onClick={() => handleReply(index, review.replyText)}>Submit Reply</button>
             <ul>
               {review.replies && review.replies.map((reply, replyIndex) => (
-                <li key={replyIndex}>{reply}</li>s
+                <li key={replyIndex}>{reply}</li>
               ))}
             </ul>
           </li>
