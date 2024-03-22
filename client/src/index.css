@@ -7,17 +7,26 @@ body {
 
 /* header css */
 .header {
-  background-color: #ffffff;
-  padding: 10px 20px;
-  position: fixed;
+  position: fixed; /* Fix the header at the top of the viewport */
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; 
+  z-index: 1000; /* Ensure the header stays above other page content */
+  background-color: #fff; /* Set a background color for the header */
 }
+
+/* Main content styles */
 main {
-  padding-top: 60px; /* Adjust this value based on the actual height of your header */
+  padding-top: 80px; /* Add padding to the top to avoid content being overlapped by the header */
+  z-index: 1; /* Ensure the main content stays above other content */
+  width: 30px;
 }
+/* 
+.main-content {
+  padding-top: 1px; /* Adjust this value based on the height of your header */
+/* } */
+
+
 
 .container {
   display: flex;
@@ -27,6 +36,11 @@ main {
 
 .logo {
   width: 150px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center items vertically */
 }
 
 .navbar-wrapper {
@@ -63,13 +77,16 @@ main {
 .museum-image {
   max-width: 100%; /* Make the image responsive */
   height: auto; /* Maintain aspect ratio */
+  
   margin-bottom: 20px; /* Add some space below the image */
 }
 
 /* Carlist css */
 .carList {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 20px; /* Gap between cards */
+  padding: 20px; /* Padding around the grid */
   grid-template-rows: auto;
   gap: 1rem;
 }
@@ -88,6 +105,8 @@ main {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
+  margin-top: 100px; /* Add margin to shift the card down */
+  
 }
 
 .car-card:hover {
@@ -103,24 +122,72 @@ main {
   margin-bottom: 10px;
 }
 
+.carDescription {
+  text-align: center;
+}
+
+
 .car-card h2 {
   margin: 10px 0;
+  text-align: center;
 }
 
 .car-card p {
   margin-bottom: 10px;
+  text-align: center;
+
 }
+
+.review-form input[type="text"]:hover,
+.review-form input[type="email"]:hover,
+.review-form textarea:hover {
+  text-decoration: none;
+  color: yellow;
+  /* background-color: yellow; */
+  padding: 8px 15px;
+  border-radius: 1030px; /* Make the buttons round */
+  transition: background-color 0.3s, color 0.3s; /* Add transition for smoother hover effect */
+}
+
+
+.review-form input[type="text"]:focus,
+.review-form input[type="email"]:focus,
+.review-form textarea:focus {
+  background-color: yellow;
+  color: black;
+  border-radius: 50px; /* Make the buttons round */
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  max-width: 300px; /* Adjust the max-width as needed */
+  margin: 0 auto; /* Center horizontally */
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: grey;
+  color: yellow;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Add transition for smooth effect */
+}
+
 
 
 
 /* navbar css */
 .navbar {
   position: fixed;
-  top: 50px; /* Adjust this value as needed */
+  top: 13px; /* Adjust this value as needed */
   left: 20;
   right: 0;
-  z-index: 1000; /* Ensure navbar stays on top of other content */
-  transition: top 0.3s; /* Add transition effect for smoother appearance */
+  height: 10px;
+  z-index: 10px; /* Ensure navbar stays on top of other content */
+  /* transition: top 0.3s; /* Add transition effect for smoother appearance */
 }
 
 .navbar li {
@@ -152,17 +219,28 @@ main {
 
 
 
-
+.navbar-wrapper {
+  width: 100%; /* Make the navbar-wrapper take up the full width */
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
+}
 
 .navbar-list {
   list-style-type: none; /* Remove default list style */
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
   display: flex; /* Use flexbox for layout */
+  align-items: center;
 }
 
 .navbar-item {
-  margin-right: 10px; /* Add margin between navbar items */
+  margin-right: 10px; 
+  /* Add margin between navbar items */ 
+} 
+
+.navbar-item {
+  margin-left: 10px; 
+  /* Adjust this value to add space between the navbar items */ 
 }
 
 .navbar li:first-child {
@@ -221,7 +299,7 @@ main {
   text-decoration: none;
   color: white;
   background-color: blue;
-  padding: 10px 20px;
+  padding: 8px 15px;
   border-radius: 20px; /* Make the buttons round */
   transition: background-color 0.3s, color 0.3s; /* Add transition for smoother hover effect */
 }

@@ -14,7 +14,7 @@ const ReviewForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="review-form" onSubmit={handleSubmit}>
       <input type="text" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} />
       <input type="email" placeholder="Your Email" value={email} onChange={(e) => setEmail(e.target.value)} />
       <textarea placeholder="Your Review" value={review} onChange={(e) => setReview(e.target.value)} />
