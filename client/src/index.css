@@ -1,6 +1,6 @@
 .app {
   /* Other styles for your app */
-  background-image: url('https://res.cloudinary.com/doyp4tk82/image/upload/v1711090667/Untitled_design_hznw9p.png');
+  /* background-image: url('https://res.cloudinary.com/doyp4tk82/image/upload/v1711090667/Untitled_design_hznw9p.png'); */
   background-size: cover; /* Fit the background image within the container */
   background-position: center; /* Center the background image */
   background-repeat: repeat; /* Repeat the background image */
@@ -8,7 +8,7 @@
 
 
 .welcome-message {
-  margin-top: 50px; /* Adjust the margin-top value as needed to move it down */
+  margin-top:40px; /* Adjust the margin-top value as needed to move it down */
   color: white;
   font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
 }
@@ -66,20 +66,18 @@ main {
 
 /* Home css */
 .home-container {
-  max-width: 800px; /* Adjust the maximum width as needed */
+  max-width: 1250px; /* Adjust the maximum width as needed */
+  height: 900px;
   margin: 0 auto; /* Center the container horizontally */
   text-align: center; /* Center-align the content */
-}
-.home-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
+  background-image: url('https://res.cloudinary.com/doyp4tk82/image/upload/v1711090667/Untitled_design_hznw9p.png');
+  background-size: cover; /* Fit the background image within the container */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
 }
 
 .home-container img {
-  max-width: 100%;
+  max-width: 600px;
   height: auto;
   margin-bottom: 20px;
 }
@@ -103,7 +101,7 @@ main {
 }
 
 .second-paragraph {
-  background-color: tan;
+  background-color: white;
   color: blue;
   transition: background-color 0.3s, color 0.3s; /* Add transition effect */
   border-radius:5px;
@@ -138,12 +136,12 @@ main {
   padding: 20px; /* Padding around the grid */
   grid-template-rows: auto;
   gap: 1rem;
-  background-color: rgb(49, 38, 38);
+  /* background-color: rgb(49, 38, 38); */
   border: 1px solid #ccc; /* Change the border width as needed */
   border-radius: 0px; /* Add border radius for rounded corners if desired */
   justify-items: center; 
-  background-image: url('https://play-lh.googleusercontent.com/Ziyf1FvnsbRbA1iR5njs6iIhVLmC_RNdHmq0fETu5FdUea7adEuAcq8hsZEnHMRIDDk');
-  background-size: cover; /* Fit the background image within the container */
+  background-image: url('https://as1.ftcdn.net/v2/jpg/04/16/70/18/1000_F_416701849_ThbORgJnpuoIE7TWKqXZ7x3atFTKoBI8.jpg');
+  background-size: 25%; /* Zoom out the background image */
   background-position: center; /* Center the background image */
   background-repeat: repeat; /* Repeat the background image */
 
