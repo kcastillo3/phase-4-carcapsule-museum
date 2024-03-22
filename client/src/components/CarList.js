@@ -116,7 +116,7 @@ const CarList = () => {
       make: 'Ford',
       model: 'Fairlane Crown Victoria',
       description: 'The Ford Fairlane Crown Victoria is a classic American sedan with a distinctive two-tone paint scheme and spacious interior, perfect for cruising in style.',
-      imageUrl: 'https://cdn.dealeraccelerate.com/streetside/1/40650/3245396/1920x1440/1977-citroen-2cv',
+      imageUrl: 'https://cdn.dealeraccelerate.com/streetside/2/36959/2745087/1920x1440/w/1955-ford-fairlane-crown-victorias',
     },
     {
       id: 15,
