@@ -9,8 +9,9 @@
 
 
 .welcome-message {
+  background-color: blue;
   margin-top:60px; /* Adjust the margin-top value as needed to move it down */
-  color: BLUE;
+  color: white;
   font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
 }
 body {
@@ -85,6 +86,10 @@ main {
 
 .home-container p {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
 }
 
 .museum-image {
@@ -104,8 +109,12 @@ main {
 .second-paragraph {
   background-color: white;
   color: blue;
+  max-width: 600px;
+  border-radius: 5px;
+  padding: 10px; /* Add padding for better visual appearance */
   transition: background-color 0.3s, color 0.3s; /* Add transition effect */
-  border-radius:5px;
+  text-align: center; /* Center text horizontally */
+  margin: 0 auto; /* Center the message box horizontally */
 }
 
 /* Hover effect */
