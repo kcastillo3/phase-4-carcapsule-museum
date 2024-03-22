@@ -5,6 +5,29 @@ body {
   box-sizing: border-box; /* Use border-box box-sizing model */
 }
 
+/* header css */
+header {
+  background-color: #ffffff;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 150px;
+}
+
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 
 /* Home css */
 .home-container {
