@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
 
-const ReviewForm = ({ onSubmitReview }) => {
-  const [content, setContent] = useState('');
+const ReviewForm = ({ onSubmit }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [review, setReview] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmitReview(content);
-    setContent('');
-  }
+    onSubmit({ name, email, review });
+    setName('');
+    setEmail('');
+    setReview('');
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <textarea value={content} onChange={(e) => setContent(e.target.value)} placeholder="Write your review..." required></textarea>
+    <form className="review-form" onSubmit={handleSubmit}>
+      <input type="text" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} />
+      <input type="email" placeholder="Your Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <textarea placeholder="Your Review" value={review} onChange={(e) => setReview(e.target.value)} />
       <button type="submit">Submit Review</button>
     </form>
   );
-}
+};
 
 export default ReviewForm;
