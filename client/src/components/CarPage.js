@@ -4,7 +4,7 @@ import CarList from './CarList'
 
 function CarPage() {
   return (
-    <div>
+    <div className="car-page-container">
       <CarList />
     </div>
   )

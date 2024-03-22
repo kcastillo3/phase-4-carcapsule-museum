@@ -24,6 +24,7 @@ const Login = ({ onLogin, isLoggedIn }) => {
 
   return (
     <div className="login-container">
+      <img src="/path/to/your/image.jpg" alt="Login Image" className="login-image" />
       <h2>Login</h2>
       <Formik
         initialValues={{ username: '', password: '' }}
@@ -60,4 +61,3 @@ const Login = ({ onLogin, isLoggedIn }) => {
 };
 
 export default Login;
-

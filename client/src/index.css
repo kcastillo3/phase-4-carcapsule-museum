@@ -1,6 +1,7 @@
 .app {
   /* Other styles for your app */
   /* background-image: url('https://res.cloudinary.com/doyp4tk82/image/upload/v1711090667/Untitled_design_hznw9p.png'); */
+  background-color: lightyellow;
   background-size: cover; /* Fit the background image within the container */
   background-position: center; /* Center the background image */
   background-repeat: repeat; /* Repeat the background image */
@@ -8,11 +9,13 @@
 
 
 .welcome-message {
-  margin-top:40px; /* Adjust the margin-top value as needed to move it down */
+  background-color: blue;
+  margin-top:60px; /* Adjust the margin-top value as needed to move it down */
   color: white;
   font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
 }
 body {
+  background-color: yellow; /* Set the background color to yellow */
   font-family: lucida sans unicode, sans-serif; /* Set a default font family */
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
@@ -66,7 +69,7 @@ main {
 
 /* Home css */
 .home-container {
-  max-width: 1250px; /* Adjust the maximum width as needed */
+  max-width: 1100px; /* Adjust the maximum width as needed */
   height: 900px;
   margin: 0 auto; /* Center the container horizontally */
   text-align: center; /* Center-align the content */
@@ -84,6 +87,10 @@ main {
 
 .home-container p {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
 }
 
 .museum-image {
@@ -103,8 +110,12 @@ main {
 .second-paragraph {
   background-color: white;
   color: blue;
+  max-width: 600px;
+  border-radius: 5px;
+  padding: 10px; /* Add padding for better visual appearance */
   transition: background-color 0.3s, color 0.3s; /* Add transition effect */
-  border-radius:5px;
+  text-align: center; /* Center text horizontally */
+  margin: 0 auto; /* Center the message box horizontally */
 }
 
 /* Hover effect */
@@ -140,7 +151,8 @@ main {
   border: 1px solid #ccc; /* Change the border width as needed */
   border-radius: 0px; /* Add border radius for rounded corners if desired */
   justify-items: center; 
-  background-image: url('https://as1.ftcdn.net/v2/jpg/04/16/70/18/1000_F_416701849_ThbORgJnpuoIE7TWKqXZ7x3atFTKoBI8.jpg');
+  /* background-image: url('https://as1.ftcdn.net/v2/jpg/04/16/70/18/1000_F_416701849_ThbORgJnpuoIE7TWKqXZ7x3atFTKoBI8.jpg'); */
+  background-color: rgb(14, 14, 83);
   background-size: 25%; /* Zoom out the background image */
   background-position: center; /* Center the background image */
   background-repeat: repeat; /* Repeat the background image */
@@ -163,8 +175,10 @@ main {
   transition: transform 0.3s ease-in-out;
   margin-top: 100px; /* Add margin to shift the card down */
   background-color: white;
-  
+  position: relative;
+  cursor: pointer;
 }
+
 
 .car-card:hover {
   background-color: yellow;
@@ -195,6 +209,48 @@ main {
   text-align: center;
 
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure the modal is on top of other elements */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+  max-width: 40%; /* Adjust the width as needed */
+  max-height: 60%; /* Adjust the height as needed */
+  overflow: auto;
+  text-align: center;
+  position: fixed; /* Ensure the close button is positioned relative to the modal */
+}
+
+.modal-content img {
+  max-width: 100%; /* Ensure the image fits within the modal content */
+  max-height: 100%; /* Ensure the image fits within the modal content */
+  border-radius: 5px; /* Apply border radius to the image */
+}
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 
 .review-form input[type="text"]:hover,
 .review-form input[type="email"]:hover,
@@ -233,6 +289,9 @@ main {
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s; /* Add transition for smooth effect */
 }
+
+
+
 
 
 
@@ -367,6 +426,81 @@ main {
   color: black;
 }
 
-.navbar ul li {
-  list-style: none;
+
+/* sign up css */
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: blue;
 }
+
+.already-registered {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.already-registered a {
+  color: blue;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="email"] {
+  background-color: white; /* Adjust the background color as needed */
+  color: black; /* Adjust the text color as needed */
+  border-color: blue; /* Adjust the border color as needed */
+  border-radius: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.input-group input[type="text"]:hover,
+.input-group input[type="password"]:hover,
+.input-group input[type="email"]:hover {
+  background-color: yellow; /* Adjust the background color as needed */
+  color: black; /* Adjust the text color as needed */
+}
+
+.error-message {
+  color: red;
+}
+
+.signup-button {
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: #007bff; /* Adjust the background color as needed */
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Add transition for smooth hover effect */
+}
+
+.signup-button:hover {
+  background-color: lightblue;
+  color: black; /* Adjust the hover color as needed */
+}
+
+.signup-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px; /* Adjust the top margin as needed */
+  margin-bottom: 20px; /* Adjust the bottom margin as needed */
+  font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
+}
+

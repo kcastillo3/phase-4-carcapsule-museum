@@ -1,22 +1,29 @@
 import React from 'react';
 
-const ReviewList = ({ reviews }) => {
-  // Check if reviews is defined and is an array before mapping
-  if (!Array.isArray(reviews)) {
-    // Return some placeholder or nothing if reviews are not available
-    return <div>No reviews available.</div>;
-  }
+const ReviewList = ({ reviews, onReply }) => {
+  const handleReply = (reviewIndex, replyText) => {
+    onReply(reviewIndex, replyText);
+  };
 
   return (
     <div>
-      <h4>Reviews:</h4>
+      <h3>Reviews</h3>
       <ul>
-        {reviews.map(review => (
-          <li key={review.id}>{review.content}</li>
+        {reviews.map((review, index) => (
+          <li key={index}>
+            <div>{review.review}</div>
+            <textarea placeholder="Reply..." onChange={(e) => review.replyText = e.target.value}></textarea>
+            <button onClick={() => handleReply(index, review.replyText)}>Submit Reply</button>
+            <ul>
+              {review.replies && review.replies.map((reply, replyIndex) => (
+                <li key={replyIndex}>{reply}</li>
+              ))}
+            </ul>
+          </li>
         ))}
       </ul>
     </div>
   );
-}
+};
 
 export default ReviewList;

@@ -1,21 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReviewForm from './ReviewForm';
-import ReviewList from './ReviewList'; // Assuming you have this component
+import ReviewList from './ReviewList';
+import '../index.css';
 
-const CarCard = ({ car, reviews }) => {
+const CarCard = ({ car }) => {
+  const [reviews, setReviews] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleReviewSubmit = (review) => {
+    setReviews([...reviews, { ...review, replies: [] }]);
+  };
+
+  const handleReply = (reviewIndex, replyText) => {
+    setReviews((prevReviews) => {
+      const updatedReviews = [...prevReviews];
+      updatedReviews[reviewIndex].replies.push(replyText);
+      return updatedReviews;
+    });
+  };
+
+  const handleCardClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="car-card">
-      <h4>
-        {car.make} {car.model}
-      </h4>
-      <img src={car.imageUrl} alt={`${car.make} ${car.model}`} />
-      <a href={`/car/${car.id}`}>View Details</a>
-      {/* Display the form for submitting a new review */}
-      <ReviewForm carId={car.id} />
-      {/* Assuming ReviewList takes an array of reviews for this car */}
-      <ReviewList reviews={reviews} />
-    </div>
+    <>
+      <div className="car-card" onClick={handleCardClick}>
+        <img src={car.imageUrl} alt={car.make} />
+        <h2>{car.year} {car.make} {car.model}</h2>
+        <p>{car.description}</p>
+      </div>
+
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={handleCloseModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <img src={car.imageUrl} alt={car.make} />
+            <h2>{car.year} {car.make} {car.model}</h2>
+            <p>{car.description}</p>
+            <ReviewForm onSubmit={handleReviewSubmit} />
+            <ReviewList reviews={reviews} onReply={handleReply} />
+            <button className="close-modal" onClick={handleCloseModal}>Close</button>
+          </div>
+        </div>
+      )}
+    </>
   );
-}
+};
 
 export default CarCard;
