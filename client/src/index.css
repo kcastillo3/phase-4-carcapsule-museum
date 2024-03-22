@@ -1,30 +1,370 @@
-body {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-.carList {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  gap: 1rem;
+.app {
+  /* Other styles for your app */
+  /* background-image: url('https://res.cloudinary.com/doyp4tk82/image/upload/v1711090667/Untitled_design_hznw9p.png'); */
+  background-size: cover; /* Fit the background image within the container */
+  background-position: center; /* Center the background image */
+  background-repeat: repeat; /* Repeat the background image */
 }
 
-.car-card {
-  display: block;
+
+.welcome-message {
+  margin-top:40px; /* Adjust the margin-top value as needed to move it down */
+  color: white;
+  font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
+}
+body {
+  font-family: lucida sans unicode, sans-serif; /* Set a default font family */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box; /* Use border-box box-sizing model */
+}
+
+/* header css */
+.header {
+  position: fixed; /* Fix the header at the top of the viewport */
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 500px;
+  z-index: 1000; /* Ensure the header stays above other page content */
+  background-color: #fff; /* Set a background color for the header */
+}
+
+/* Main content styles */
+main {
+  padding-top: 80px; /* Add padding to the top to avoid content being overlapped by the header */
+  z-index: 1; /* Ensure the main content stays above other content */
+  width: 30px;
+}
+/* 
+.main-content {
+  padding-top: 1px; /* Adjust this value based on the height of your header */
+/* } */
+
+
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 150px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center items vertically */
+}
+
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+/* Home css */
+.home-container {
+  max-width: 1250px; /* Adjust the maximum width as needed */
+  height: 900px;
+  margin: 0 auto; /* Center the container horizontally */
+  text-align: center; /* Center-align the content */
+  background-image: url('https://res.cloudinary.com/doyp4tk82/image/upload/v1711090667/Untitled_design_hznw9p.png');
+  background-size: cover; /* Fit the background image within the container */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+.home-container img {
+  max-width: 600px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.home-container p {
+  margin-bottom: 20px;
+}
+
+.museum-image {
+  max-width: 100%; /* Make the image responsive */
+  height: auto; /* Maintain aspect ratio */
+  
+  margin-bottom: 20px; /* Add some space below the image */
+}
+
+.first-paragraph {
+  background-color: tan;
+  color: black;
+  transition: background-color 0.3s, color 0.3s; /* Add transition effect */
+  border-radius:5px;
+}
+
+.second-paragraph {
+  background-color: white;
+  color: blue;
+  transition: background-color 0.3s, color 0.3s; /* Add transition effect */
+  border-radius:5px;
+}
+
+/* Hover effect */
+.first-paragraph:hover {
+  background-color: yellow;
+  color: black;
+}
+
+.second-paragraph:hover {
+  background-color: yellow;
+  color: black;
+}
+
+/* car page css */
+
+.car-page-container {
+  max-width: 1200px; /* Set the maximum width of the container */
+  margin: 0 auto; /* Center the container horizontally */
+  /* padding: 20px; Add padding around the container */
+  height: 400px; /* Set the height of the container */
+  /* overflow: auto; Add scrollbars if the content exceeds the height */
+}
+
+/* Carlist css */
+.carList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 20px; /* Gap between cards */
+  padding: 20px; /* Padding around the grid */
+  grid-template-rows: auto;
+  gap: 1rem;
+  /* background-color: rgb(49, 38, 38); */
+  border: 1px solid #ccc; /* Change the border width as needed */
+  border-radius: 0px; /* Add border radius for rounded corners if desired */
+  justify-items: center; 
+  background-image: url('https://as1.ftcdn.net/v2/jpg/04/16/70/18/1000_F_416701849_ThbORgJnpuoIE7TWKqXZ7x3atFTKoBI8.jpg');
+  background-size: 25%; /* Zoom out the background image */
+  background-position: center; /* Center the background image */
+  background-repeat: repeat; /* Repeat the background image */
+
+}
+
+
+/* car card css */
+.car-card {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 15px;
-  border: #333;
+  /* width: 100%; */
+  max-width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  margin-top: 100px; /* Add margin to shift the card down */
+  background-color: white;
+  
+}
+
+.car-card:hover {
+  background-color: yellow;
+  transform: scale(1.05);
 }
 
 .car-card img {
-  display: block;
-  height: 90%;
+
   width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.carDescription {
+  text-align: center;
+}
+
+
+.car-card h2 {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.car-card p {
+  margin-bottom: 10px;
+  text-align: center;
+
+}
+
+.review-form input[type="text"]:hover,
+.review-form input[type="email"]:hover,
+.review-form textarea:hover {
+  text-decoration: none;
+  color: yellow;
+  /* background-color: yellow; */
+  padding: 8px 15px;
+  border-radius: 1030px; /* Make the buttons round */
+  transition: background-color 0.3s, color 0.3s; /* Add transition for smoother hover effect */
+}
+
+
+.review-form input[type="text"]:focus,
+.review-form input[type="email"]:focus,
+.review-form textarea:focus {
+  background-color: yellow;
+  color: black;
+  border-radius: 50px; /* Make the buttons round */
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  max-width: 300px; /* Adjust the max-width as needed */
+  margin: 0 auto; /* Center horizontally */
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: grey;
+  color: yellow;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Add transition for smooth effect */
+}
+
+
+
+
+/* navbar css */
+.navbar {
+  position: fixed;
+  top: 13px; /* Adjust this value as needed */
+  left: 20;
+  right: 0;
+  height: 10px;
+  z-index: 10px; /* Ensure navbar stays on top of other content */
+  /* transition: top 0.3s; /* Add transition effect for smoother appearance */
+}
+
+.navbar li {
+  display: inline-block; /* Display navbar items inline */
+  margin-left: 10px; /* Add margin between navbar items */
+}
+.navbar ul li {
+  list-style: none;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Center the items horizontally */
+}
+
+.navbar ul li {
+  margin: 0 10px; /* Add some spacing between the buttons */
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+
+
+
+
+.navbar-wrapper {
+  width: 100%; /* Make the navbar-wrapper take up the full width */
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
+}
+
+.navbar-list {
+  list-style-type: none; /* Remove default list style */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  display: flex; /* Use flexbox for layout */
   align-items: center;
+}
+
+.navbar-item {
+  margin-right: 10px; 
+  /* Add margin between navbar items */ 
+} 
+
+.navbar-item {
+  margin-left: 10px; 
+  /* Adjust this value to add space between the navbar items */ 
+}
+
+.navbar li:first-child {
+  margin-left: 0; /* Remove margin from the first navbar item */
+}
+
+.navbar-item:last-child {
+  margin-right: 0; /* Remove margin from the last navbar item */
+}
+
+.navbar ul li:last-child {
+  margin-right: 0;
+}
+
+.navbar-item a,
+.navbar-item button {
+  text-decoration: none; /* Remove default underline for links */
+  color: #fff; /* Set text color for links */
+  padding: 10px; /* Add padding for better clickability */
+}
+
+.navbar-item button {
+  background-color: brown; /* Set background color for the button */
+  color: white; /* Set text color for the button */
+  border: none; /* Remove border from the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.navbar-item button:hover {
+  background-color: #8b4513; /* Darken background color on hover */
+}
+
+.login-text {
+  color: brown; /* Set text color for the "Login" text */
+}
+
+.navbar-item a:hover,
+.navbar-item button:hover {
+  background-color: #555; /* Change background color on hover */
+}
+
+/* navbar menu button styling */
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Center the items horizontally */
+}
+
+.navbar ul li {
+  margin: 0 10px; /* Add some spacing between the buttons */
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: white;
+  background-color: blue;
+  padding: 8px 15px;
+  border-radius: 20px; /* Make the buttons round */
+  transition: background-color 0.3s, color 0.3s; /* Add transition for smoother hover effect */
+}
+
+.navbar ul li a:hover {
+  background-color: yellow;
+  color: black;
 }
 
 .navbar ul li {
