@@ -66,7 +66,7 @@ const CarList = () => {
       make: 'Jaguar',
       model: 'E-Type Series 1',
       imageUrl:
-        'https://www.streetsideclassics.com/vehicles/3462-phx/1966-jaguar-e-type-series-1',
+        'https://cdn.dealeraccelerate.com/streetside/6/41902/3390374/1920x1440/w/1966-jaguar-e-type-series-1',
     },
     {
       id: 9,
@@ -82,7 +82,7 @@ const CarList = () => {
       make: 'Pontiac',
       model: 'GTO Judge Tribute',
       imageUrl:
-        'https://www.streetsideclassics.com/vehicles/6514-dfw/1971-pontiac-gto-judge-tribute',
+        'https://cdn.dealeraccelerate.com/streetside/2/41385/3341312/1920x1440/w/1971-pontiac-gto-judge-tribute',
     },
     {
       id: 11,
@@ -90,7 +90,7 @@ const CarList = () => {
       make: 'Ford',
       model: 'UTE Restomod',
       imageUrl:
-        'https://www.streetsideclassics.com/vehicles/4053-nsh/1946-ford-ute-restomod',
+        'https://cdn.dealeraccelerate.com/streetside/5/41339/3337257/1920x1440/w/1946-ford-ute-restomod',
     },
     {
       id: 12,
