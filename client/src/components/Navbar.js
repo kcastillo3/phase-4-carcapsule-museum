@@ -4,6 +4,7 @@ import '../index.css'
 
 const Navbar = ({ isLoggedIn }) => {
   return (
+    <header className='header'>
     <nav className="navbar">
       <ul> 
         <li><Link to="/">Home</Link></li>
@@ -20,6 +21,7 @@ const Navbar = ({ isLoggedIn }) => {
         )}
       </ul>
     </nav>
+    </header>
   )
 }
 
