@@ -1,24 +1,15 @@
 import React from 'react';
 
-const ReviewList = ({ reviews, onReply }) => {
-  const handleReply = (reviewIndex, replyText) => {
-    onReply(reviewIndex, replyText);
-  };
-
+  const ReviewList = ({ reviews }) => {
+  
   return (
     <div>
       <h3>Reviews</h3>
       <ul>
         {reviews.map((review, index) => (
           <li key={index}>
-            <div>{review.review}</div>
-            <textarea placeholder="Reply..." onChange={(e) => review.replyText = e.target.value}></textarea>
-            <button onClick={() => handleReply(index, review.replyText)}>Submit Reply</button>
-            <ul>
-              {review.replies && review.replies.map((reply, replyIndex) => (
-                <li key={replyIndex}>{reply}</li>
-              ))}
-            </ul>
+            <strong>{review.name}</strong> - {review.email}<br />
+            {review.review}
           </li>
         ))}
       </ul>
