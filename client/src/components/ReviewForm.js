@@ -15,9 +15,18 @@ const ReviewForm = ({ onSubmit }) => {
 
   return (
     <form className="review-form" onSubmit={handleSubmit}>
-      <input type="text" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} />
-      <input type="email" placeholder="Your Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <textarea placeholder="Your Review" value={review} onChange={(e) => setReview(e.target.value)} />
+      <div className="form-group">
+        <label htmlFor="name">Your Name:</label>
+        <input type="text" id="name" placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} required />
+      </div>
+      <div className="form-group">
+        <label htmlFor="email">Your Email:</label>
+        <input type="email" id="email" placeholder="Your Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      </div>
+      <div className="form-group">
+        <label htmlFor="review">Your Review:</label>
+        <textarea id="review" placeholder="Your Review" value={review} onChange={(e) => setReview(e.target.value)} required />
+      </div>
       <button type="submit">Submit Review</button>
     </form>
   );
