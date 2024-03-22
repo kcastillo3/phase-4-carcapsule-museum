@@ -15,6 +15,7 @@
   font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
 }
 body {
+  background-color: yellow; /* Set the background color to yellow */
   font-family: lucida sans unicode, sans-serif; /* Set a default font family */
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
