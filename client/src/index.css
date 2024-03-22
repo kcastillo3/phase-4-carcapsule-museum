@@ -1,6 +1,7 @@
 .app {
   /* Other styles for your app */
   /* background-image: url('https://res.cloudinary.com/doyp4tk82/image/upload/v1711090667/Untitled_design_hznw9p.png'); */
+  background-color: yellow;
   background-size: cover; /* Fit the background image within the container */
   background-position: center; /* Center the background image */
   background-repeat: repeat; /* Repeat the background image */
@@ -8,8 +9,8 @@
 
 
 .welcome-message {
-  margin-top:40px; /* Adjust the margin-top value as needed to move it down */
-  color: white;
+  margin-top:60px; /* Adjust the margin-top value as needed to move it down */
+  color: BLUE;
   font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
 }
 body {
@@ -66,7 +67,7 @@ main {
 
 /* Home css */
 .home-container {
-  max-width: 1250px; /* Adjust the maximum width as needed */
+  max-width: 1100px; /* Adjust the maximum width as needed */
   height: 900px;
   margin: 0 auto; /* Center the container horizontally */
   text-align: center; /* Center-align the content */
@@ -140,7 +141,8 @@ main {
   border: 1px solid #ccc; /* Change the border width as needed */
   border-radius: 0px; /* Add border radius for rounded corners if desired */
   justify-items: center; 
-  background-image: url('https://as1.ftcdn.net/v2/jpg/04/16/70/18/1000_F_416701849_ThbORgJnpuoIE7TWKqXZ7x3atFTKoBI8.jpg');
+  /* background-image: url('https://as1.ftcdn.net/v2/jpg/04/16/70/18/1000_F_416701849_ThbORgJnpuoIE7TWKqXZ7x3atFTKoBI8.jpg'); */
+  background-color: rgb(14, 14, 83);
   background-size: 25%; /* Zoom out the background image */
   background-position: center; /* Center the background image */
   background-repeat: repeat; /* Repeat the background image */
