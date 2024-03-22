@@ -4,8 +4,8 @@ import '../index.css'
 
 const Navbar = ({ isLoggedIn }) => {
   return (
-    <nav>
-      <ul>
+    <nav className="navbar">
+      <ul> 
         <li><Link to="/">Home</Link></li>
         <li><Link to="/car">Car Page</Link></li>
         {isLoggedIn ? (

@@ -88,7 +88,113 @@ header {
 }
 
 
+
 /* navbar css */
+.navbar {
+  background-color: #333; /* Set background color for the navbar */
+  list-style-type: none; /* Remove default list style */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+.navbar li {
+  display: inline-block; /* Display navbar items inline */
+  margin-left: 10px; /* Add margin between navbar items */
+}
 .navbar ul li {
   list-style: none;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Center the items horizontally */
+}
+
+.navbar ul li {
+  margin: 0 10px; /* Add some spacing between the buttons */
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+
+
+
+
+.navbar-list {
+  list-style-type: none; /* Remove default list style */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  display: flex; /* Use flexbox for layout */
+}
+
+.navbar-item {
+  margin-right: 10px; /* Add margin between navbar items */
+}
+
+.navbar li:first-child {
+  margin-left: 0; /* Remove margin from the first navbar item */
+}
+
+.navbar-item:last-child {
+  margin-right: 0; /* Remove margin from the last navbar item */
+}
+
+.navbar-item a,
+.navbar-item button {
+  text-decoration: none; /* Remove default underline for links */
+  color: #fff; /* Set text color for links */
+  padding: 10px; /* Add padding for better clickability */
+}
+
+.navbar-item button {
+  background-color: brown; /* Set background color for the button */
+  color: white; /* Set text color for the button */
+  border: none; /* Remove border from the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.navbar-item button:hover {
+  background-color: #8b4513; /* Darken background color on hover */
+}
+
+.login-text {
+  color: brown; /* Set text color for the "Login" text */
+}
+
+.navbar-item a:hover,
+.navbar-item button:hover {
+  background-color: #555; /* Change background color on hover */
+}
+
+/* navbar menu button styling */
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Center the items horizontally */
+}
+
+.navbar ul li {
+  margin: 0 10px; /* Add some spacing between the buttons */
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: white;
+  background-color: blue;
+  padding: 10px 20px;
+  border-radius: 20px; /* Make the buttons round */
+  transition: background-color 0.3s, color 0.3s; /* Add transition for smoother hover effect */
+}
+
+.navbar ul li a:hover {
+  background-color: yellow;
+  color: black;
 }
