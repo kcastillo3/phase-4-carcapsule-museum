@@ -23,8 +23,7 @@ const SignUp = ({ onSignUp }) => {
 
   return (
     <div className="signup-container">
-      <h2>Create An Account</h2>
-      <p className="already-registered">Already registered? <a href="/login">Log in here</a></p>
+      <h2>Sign Up</h2>
       <Formik
         initialValues={{ email: '', username: '', password: '' }}
         validate={validate}
@@ -53,7 +52,7 @@ const SignUp = ({ onSignUp }) => {
               <Field type="password" name="password" />
               <ErrorMessage name="password" component="div" className="error-message" />
             </div>
-            <button type="submit" disabled={isSubmitting} className="signup-button">
+            <button type="submit" disabled={isSubmitting}>
               Sign Up
             </button>
           </Form>
