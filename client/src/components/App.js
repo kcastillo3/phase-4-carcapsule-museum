@@ -29,7 +29,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className="App">
+      <div className="app">
         <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
         <Switch>
           <Route exact path="/" component={Home} />

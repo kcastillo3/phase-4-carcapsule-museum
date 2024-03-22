@@ -1,3 +1,15 @@
+.app {
+  /* Other styles for your app */
+  background-image: url('https://res.cloudinary.com/doyp4tk82/image/upload/v1711090667/Untitled_design_hznw9p.png');
+  background-size: cover; /* Fit the background image within the container */
+  background-position: center; /* Center the background image */
+  background-repeat: repeat; /* Repeat the background image */
+}
+
+
+.welcome-message {
+  margin-top: 50px; /* Adjust the margin-top value as needed to move it down */
+}
 body {
   font-family: Arial, sans-serif; /* Set a default font family */
   margin: 0; /* Remove default margin */
@@ -81,6 +93,16 @@ main {
   margin-bottom: 20px; /* Add some space below the image */
 }
 
+/* car page css */
+
+.car-page-container {
+  max-width: 1200px; /* Set the maximum width of the container */
+  margin: 0 auto; /* Center the container horizontally */
+  /* padding: 20px; Add padding around the container */
+  height: 400px; /* Set the height of the container */
+  /* overflow: auto; Add scrollbars if the content exceeds the height */
+}
+
 /* Carlist css */
 .carList {
   display: grid;
@@ -89,6 +111,15 @@ main {
   padding: 20px; /* Padding around the grid */
   grid-template-rows: auto;
   gap: 1rem;
+  background-color: rgb(49, 38, 38);
+  border: 1px solid #ccc; /* Change the border width as needed */
+  border-radius: 0px; /* Add border radius for rounded corners if desired */
+  justify-items: center; 
+  background-image: url('https://play-lh.googleusercontent.com/Ziyf1FvnsbRbA1iR5njs6iIhVLmC_RNdHmq0fETu5FdUea7adEuAcq8hsZEnHMRIDDk');
+  background-size: cover; /* Fit the background image within the container */
+  background-position: center; /* Center the background image */
+  background-repeat: repeat; /* Repeat the background image */
+
 }
 
 
@@ -106,10 +137,12 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
   margin-top: 100px; /* Add margin to shift the card down */
+  background-color: white;
   
 }
 
 .car-card:hover {
+  background-color: yellow;
   transform: scale(1.05);
 }
 
