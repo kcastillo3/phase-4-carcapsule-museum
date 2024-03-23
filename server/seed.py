@@ -138,7 +138,8 @@ def seed_data():
             make=car['make'],
             model=car['model'],
             year=car['year'],
-            description=car['description']
+            description=car['description'],
+            imageUrl=car['imageUrl']
         )
         db.session.add(new_car)
     

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ReviewForm = ({ carId }) => { // Included carId as a prop
+const ReviewForm = ({ carId, userId }) => { // Included carId and userId as a prop
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [review, setReview] = useState('');
@@ -9,7 +9,7 @@ const ReviewForm = ({ carId }) => { // Included carId as a prop
     e.preventDefault();
 
     // Prepared the review data to be sent in the POST request
-    const reviewData = { name, email, review }; // You might need to adjust this structure based on backend expectations
+    const reviewData = { user_id: userId, name, email, review  }; // You might need to adjust this structure based on backend expectations
 
     // Perform the POST request to our Flask backend
     fetch(`http://localhost:5555/review_form/${carId}`, { // Include carId in the URL
