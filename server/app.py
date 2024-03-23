@@ -15,25 +15,28 @@ from models import Users, Reviews, Cars
 def index():
     return '<h1>Project Server</h1>'
 
-@app.route('/review_list/<int:car_id>', methods=['GET'])
-def get_reviews_for_car(car_id):
-    reviews = Reviews.query.filter_by(car_id=car_id).all()
-    review_list = [{
-        'id': review.id,
-        'user_id': review.user_id,
-        'car_id': review.car_id,
-        'rating': review.rating,
-        'content': review.content,
-        'username': review.user.username  # Directly access username from the user
-        # Removed email for privacy reasons; add it if it's necessary for your application
-    } for review in reviews]
-    return jsonify(review_list)
+@app.route('/cars_card/<int:car_id>', methods=['GET'])
+def get_car_details(car_id):
+    car = Cars.query.filter_by(id=car_id).first()
+    if car:
+        car_details = {
+            'id': car.id,
+            'name': car.name,
+            'make': car.make,
+            'model': car.model,
+            'year': car.year,
+            'description': car.description,
+            'imageUrl': car.imageUrl  # Make sure this is included
+        }
+        return jsonify(car_details)
+    else:
+        return jsonify({'message': 'Car not found'}), 404
 
 @app.route('/review_form/<int:car_id>', methods=['POST'])
 def add_review_for_car(car_id):
     data = request.json
     # Assuming `name` and `email` are part of the review model, or handled differently
-    new_review = Review(
+    new_review = Reviews(
         car_id=car_id, 
         user_id=data['user_id'],  # Assuming our user's ID is sent with the request
         content=data['review']
@@ -70,14 +73,6 @@ def get_all_cars():
     cars = Cars.query.all()  # This line queries our database for all car records
     car_list = [{'id': car.id, 'name': car.name, 'make': car.make, 'model': car.model, 'year': car.year} for car in cars]
     return jsonify(car_list)
-
-@app.route('/cars_card/<int:car_id>', methods=['GET'])
-def get_car_details(car_id):
-    car = next((car for car in cars if car['id'] == car_id), None)
-    if car:
-        return jsonify(car)
-    else:
-        return jsonify({'message': 'Car not found'}), 404
     
 @app.route('/users', methods=['POST'])
 def register_user():

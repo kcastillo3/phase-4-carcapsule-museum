@@ -27,12 +27,12 @@ class Cars(db.Model, SerializerMixin):
     model = Column(String(100), nullable=False)
     year = Column(Integer)
     description = Column(Text)
+    imageUrl = Column(String(255))  # Added field for storing the image URL
 
     reviews = relationship("Reviews", back_populates="car")
 
     def __repr__(self):
-        return f"<Car(id={self.id}, name={self.name}, make={self.make}, model={self.model}, year={self.year}, description={self.description})>"
-
+        return f"<Car(id={self.id}, name={self.name}, make={self.make}, model={self.model}, year={self.year}, description={self.description}, imageUrl={self.imageUrl})>"
 class Reviews(db.Model, SerializerMixin):
     __tablename__ = 'reviews'
 
