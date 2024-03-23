@@ -67,7 +67,9 @@ def delete_review(id):
 
 @app.route('/cars_list', methods=['GET'])
 def get_all_cars():
-    return jsonify(cars)
+    cars = Cars.query.all()  # This line queries our database for all car records
+    car_list = [{'id': car.id, 'name': car.name, 'make': car.make, 'model': car.model, 'year': car.year} for car in cars]
+    return jsonify(car_list)
 
 @app.route('/cars_card/<int:car_id>', methods=['GET'])
 def get_car_details(car_id):
