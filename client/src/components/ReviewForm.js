@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 
-const ReviewForm = ({ carId, userId }) => { // Included carId and userId as a prop
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [review, setReview] = useState('');
+const ReviewForm = ({ carId, userId }) => {
+  const [name, setName] = useState(''); // Define state for name
+  const [email, setEmail] = useState(''); // Define state for email
+  const [review, setReview] = useState(''); // Correctly defined state for review
+
+  console.log("Current userId:", userId); // Debug: Ensuring userId is available
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  
+    const reviewData = { user_id: userId, review };
 
-    // Prepared the review data to be sent in the POST request
-    const reviewData = { user_id: userId, name, email, review  }; // You might need to adjust this structure based on backend expectations
+    console.log("Submitting review with data:", reviewData); // Debug: Checking the data being sent
 
-    // Perform the POST request to our Flask backend
-    fetch(`http://localhost:5555/review_form/${carId}`, { // Include carId in the URL
+    fetch(`http://localhost:5555/review_form/${carId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -20,16 +22,16 @@ const ReviewForm = ({ carId, userId }) => { // Included carId and userId as a pr
       body: JSON.stringify(reviewData),
     })
     .then(response => {
-      if (response.ok) {
-        return response.json();
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-      throw new Error('Network response was not ok');
+      return response.json();
     })
     .then(data => {
       console.log('Review added:', data);
-      setName('');
-      setEmail('');
-      setReview('');
+      setName(''); // Reset the name state
+      setEmail(''); // Reset the email state
+      setReview(''); // Reset the review state
     })
     .catch((error) => {
       console.error('Error adding review:', error);

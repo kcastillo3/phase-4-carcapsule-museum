@@ -32,22 +32,47 @@ def get_car_details(car_id):
     else:
         return jsonify({'message': 'Car not found'}), 404
 
+@app.route('/review_list/<int:car_id>', methods=['GET'])
+def get_reviews_by_car(car_id):
+    reviews = Reviews.query.filter_by(car_id=car_id).all()
+    if not reviews:
+        return jsonify({'message': 'No reviews found for this car'}), 404
+
+    reviews_list = [
+        {
+            'id': review.id,
+            'content': review.content,
+            'user_id': review.user_id,
+            'car_id': review.car_id
+        }
+        for review in reviews
+    ]
+    return jsonify(reviews_list)
+
 @app.route('/review_form/<int:car_id>', methods=['POST'])
 def add_review_for_car(car_id):
-    data = request.json
-    # Assuming `name` and `email` are part of the review model, or handled differently
-    new_review = Reviews(
-        car_id=car_id, 
-        user_id=data['user_id'],  # Assuming our user's ID is sent with the request
-        content=data['review']
-    )
-    db.session.add(new_review)
-    db.session.commit()
-    return jsonify({'message': 'Review added successfully'}), 201
+    data = request.get_json()
+    print("Received data:", data)  # Debugging line to log received data
+    if not data or 'user_id' not in data or 'review' not in data:
+        return jsonify({'error': 'Missing required fields: user_id or review'}), 400
+    
+    # Assuming you have a Reviews model and it's correctly set up
+    try:
+        new_review = Reviews(
+            car_id=car_id,
+            user_id=data['user_id'],
+            content=data['review']
+        )
+        db.session.add(new_review)
+        db.session.commit()
+        return jsonify({'message': 'Review added successfully'}), 201
+    except Exception as e:  # Catch any errors during database operations
+        print(e)  # Log the exception
+        return jsonify({'error': 'Failed to add review'}), 500
 
 @app.route('/review_list/<int:id>', methods=['PUT'])
 def update_review(id):
-    review = Review.query.get(id)
+    review = Reviews.query.get(id)
     if not review:
         return jsonify({'message': 'Review not found'}), 404
     
@@ -61,7 +86,7 @@ def update_review(id):
 
 @app.route('/review_list/<int:id>', methods=['DELETE'])
 def delete_review(id):
-    review = Review.query.get(id)
+    review = Reviews.query.get(id)
     if not review:
         return jsonify({'message': 'Review not found'}), 404
     db.session.delete(review)
@@ -71,7 +96,17 @@ def delete_review(id):
 @app.route('/cars_list', methods=['GET'])
 def get_all_cars():
     cars = Cars.query.all()  # This line queries our database for all car records
-    car_list = [{'id': car.id, 'name': car.name, 'make': car.make, 'model': car.model, 'year': car.year} for car in cars]
+    car_list = [
+        {
+            'id': car.id,
+            'name': car.name,
+            'make': car.make,
+            'model': car.model,
+            'year': car.year,
+            'imageUrl': car.imageUrl  # Include the imageUrl property
+        }
+        for car in cars
+    ]
     return jsonify(car_list)
     
 @app.route('/users', methods=['POST'])
