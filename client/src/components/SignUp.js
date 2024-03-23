@@ -29,11 +29,32 @@ const SignUp = ({ onSignUp }) => {
         initialValues={{ email: '', username: '', password: '' }}
         validate={validate}
         onSubmit={(values, { setSubmitting }) => {
-          // Assumes validation against the backend and successful account creation
-          console.log('User signed up:', values);
-          onSignUp(); // This would handle the backend signup and also log the user in
-          setSubmitting(false);
-          history.push('/login-success'); // Direct users to the success message page -- this will change once we have backend set up
+          fetch('http://localhost:5555/users', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: values.email,
+              username: values.username,
+              password: values.password,
+            }),
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Signup failed');
+            }
+            return response.json();
+          })
+          .then(data => {
+            console.log('User signed up:', data);
+            onSignUp(); // This could be a function to update state indicating the user is now signed in
+            setSubmitting(false);
+            history.push('/login-success'); // Redirect to a success page or dashboard
+          })
+          .catch(error => {
+            console.error('Error during signup:', error);
+          });
         }}
       >
         {({ isSubmitting }) => (

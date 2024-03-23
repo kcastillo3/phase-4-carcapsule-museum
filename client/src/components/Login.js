@@ -6,9 +6,9 @@ const Login = ({ onLogin, isLoggedIn }) => {
   const history = useHistory();
 
   const validate = values => {
-    let errors = {};
+    const errors = {};
     if (!values.username) {
-      errors.username = 'Username is required';
+      errors.username = 'Username is required'; // Assuming this is actually the email field - we gotta check/go over this for clarity
     }
     if (!values.password) {
       errors.password = 'Password is required';
@@ -31,16 +31,38 @@ const Login = ({ onLogin, isLoggedIn }) => {
         initialValues={{ username: '', password: '' }}
         validate={validate}
         onSubmit={(values, { setSubmitting }) => {
-          console.log('Login attempted with:', values);
-          onLogin();
-          setSubmitting(false);
-          history.push('/login-success');
+          fetch('http://localhost:5555/users/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: values.username, // Assuming the username field is used for email - we gotta check/go over this again
+              password: values.password,
+            }),
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Login failed');
+            }
+            return response.json();
+          })
+          .then(data => {
+            console.log('Login successful:', data);
+            onLogin(true); // Update the login state
+            history.push('/login-success'); // Redirect to the "Successful Login" page
+          })
+          .catch(error => {
+            console.error('Error during login:', error);
+            alert('Failed to login. Please check your credentials.');
+          })
+          .finally(() => setSubmitting(false));
         }}
       >
         {({ isSubmitting }) => (
           <Form>
             <div className="input-group">
-              <label htmlFor="username">Username:</label>
+              <label htmlFor="username">Username (Email):</label>
               <Field type="text" name="username" />
               <ErrorMessage name="username" component="div" className="error-message" />
             </div>

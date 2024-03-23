@@ -1,16 +1,39 @@
 import React, { useState } from 'react';
 
-const ReviewForm = ({ onSubmit }) => {
+const ReviewForm = ({ carId }) => { // Included carId as a prop
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [review, setReview] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ name, email, review });
-    setName('');
-    setEmail('');
-    setReview('');
+
+    // Prepared the review data to be sent in the POST request
+    const reviewData = { name, email, review }; // You might need to adjust this structure based on backend expectations
+
+    // Perform the POST request to our Flask backend
+    fetch(`http://localhost:5555/review_form/${carId}`, { // Include carId in the URL
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(reviewData),
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Network response was not ok');
+    })
+    .then(data => {
+      console.log('Review added:', data);
+      setName('');
+      setEmail('');
+      setReview('');
+    })
+    .catch((error) => {
+      console.error('Error adding review:', error);
+    });
   };
 
   return (
