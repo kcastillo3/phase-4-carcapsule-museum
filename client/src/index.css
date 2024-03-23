@@ -1,7 +1,7 @@
 .app {
   /* Other styles for your app */
   /* background-image: url('https://res.cloudinary.com/doyp4tk82/image/upload/v1711090667/Untitled_design_hznw9p.png'); */
-  background-color: lightyellow;
+  background-color: rgb(221, 169, 73);
   background-size: cover; /* Fit the background image within the container */
   background-position: center; /* Center the background image */
   background-repeat: repeat; /* Repeat the background image */
@@ -9,13 +9,13 @@
 
 
 .welcome-message {
-  background-color: blue;
+  background-color: tan;
   margin-top:60px; /* Adjust the margin-top value as needed to move it down */
   color: white;
   font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
 }
 body {
-  background-color: yellow; /* Set the background color to yellow */
+  background-color: orange; /* Set the background color to yellow */
   font-family: lucida sans unicode, sans-serif; /* Set a default font family */
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
@@ -79,11 +79,16 @@ main {
   background-repeat: no-repeat; /* Prevent the image from repeating */
 }
 
-.home-container img {
-  max-width: 600px;
-  height: auto;
-  margin-bottom: 20px;
+.home-video {
+  width: 100%; /* Adjust the width as needed */
+  max-width: 800px; /* Set a maximum width if necessary */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure the video is displayed as a block element */
+  margin: 20px auto; /* Center the video horizontally and add some margin */
 }
+
+
+
 
 .home-container p {
   margin-bottom: 20px;
@@ -120,12 +125,12 @@ main {
 
 /* Hover effect */
 .first-paragraph:hover {
-  background-color: yellow;
+  background-color: orange;
   color: black;
 }
 
 .second-paragraph:hover {
-  background-color: yellow;
+  background-color: orange;
   color: black;
 }
 
@@ -181,7 +186,7 @@ main {
 
 
 .car-card:hover {
-  background-color: yellow;
+  background-color: orange;
   transform: scale(1.05);
 }
 
@@ -256,7 +261,7 @@ main {
 .review-form input[type="email"]:hover,
 .review-form textarea:hover {
   text-decoration: none;
-  color: yellow;
+  color: orange;
   /* background-color: yellow; */
   padding: 8px 15px;
   border-radius: 5; /* Make the buttons round */
@@ -267,7 +272,7 @@ main {
 .review-form input[type="text"]:focus,
 .review-form input[type="email"]:focus,
 .review-form textarea:focus {
-  background-color: yellow;
+  background-color: orange;
   color: black;
   border-radius: 5px; /* Make the buttons round */
 }
@@ -284,7 +289,7 @@ main {
   border-radius: 1030px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: grey;
-  color: yellow;
+  color: orange;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s; /* Add transition for smooth effect */
@@ -422,7 +427,7 @@ main {
 }
 
 .navbar ul li a:hover {
-  background-color: yellow;
+  background-color: orange;
   color: black;
 }
 
@@ -469,7 +474,7 @@ main {
 .input-group input[type="text"]:hover,
 .input-group input[type="password"]:hover,
 .input-group input[type="email"]:hover {
-  background-color: yellow; /* Adjust the background color as needed */
+  background-color: orange; /* Adjust the background color as needed */
   color: black; /* Adjust the text color as needed */
 }
 
@@ -555,7 +560,7 @@ main {
 .input-group input[type="text"]:hover,
 .input-group input[type="password"]:hover,
 .input-group input[type="email"]:hover {
-  background-color: yellow; /* Adjust the background color as needed */
+  background-color: orange; /* Adjust the background color as needed */
   color: black; /* Adjust the text color as needed */
 }
 
