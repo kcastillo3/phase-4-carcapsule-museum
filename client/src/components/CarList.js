@@ -50,8 +50,8 @@ const CarList = () => {
       id: 6,
       year: 1989,
       make: 'Batmobile',
-      model: '1989 Batmobile',
-      description: 'The 1989 Batmobile is the iconic vehicle driven by Batman in the 1989 Batman film, known for its sleek design and advanced technology.',
+      model: '(1967 Chevrolet Impala)',
+      description: 'The 1989 Batmobile is the iconic vehicle driven by Batman in the 1989 Batman film, known for its sleek design and advanced technology. Almost 20 feet in length, the Batmobile was based on the platform of a 1967 Chevrolet Impala found in London. It was powered by a 327-cubic-inch V-8 Chevrolet engine mounted low in the frame.',
       imageUrl: 'https://cdn.dealeraccelerate.com/streetside/6/42206/3439055/1920x1440/w/1989-batmobile',
     },
     {
