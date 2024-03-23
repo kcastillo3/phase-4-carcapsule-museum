@@ -4,10 +4,9 @@ import { useHistory, Redirect } from 'react-router-dom';
 
 const Login = ({ onLogin, isLoggedIn }) => {
   const history = useHistory();
-  
+
   const validate = values => {
     let errors = {};
-    // Basic validation logic
     if (!values.username) {
       errors.username = 'Username is required';
     }
@@ -17,25 +16,25 @@ const Login = ({ onLogin, isLoggedIn }) => {
     return errors;
   };
 
-  // If the user is already logged in, redirect them to the home page or dashboard
   if (isLoggedIn) {
     return <Redirect to="/" />;
   }
 
   return (
     <div className="login-container">
-      <img src="/path/to/your/image.jpg" alt="Login Image" className="login-image" />
+      <video autoPlay muted loop className="login-video">
+        <source src="https://res.cloudinary.com/doyp4tk82/video/upload/v1711157406/car-gif_uoe0bk.mp4" />
+        Your browser does not support the video tag.
+      </video>
       <h2>Login</h2>
       <Formik
         initialValues={{ username: '', password: '' }}
         validate={validate}
         onSubmit={(values, { setSubmitting }) => {
           console.log('Login attempted with:', values);
-          // Here, we would typically validate the credentials against our backend
-          // For now, we'll assume the credentials are valid and proceed to log in
-          onLogin(); // Call the onLogin function passed as a prop
+          onLogin();
           setSubmitting(false);
-          history.push('/login-success'); // Navigate to a success page or dashboard
+          history.push('/login-success');
         }}
       >
         {({ isSubmitting }) => (
@@ -50,7 +49,7 @@ const Login = ({ onLogin, isLoggedIn }) => {
               <Field type="password" name="password" />
               <ErrorMessage name="password" component="div" className="error-message" />
             </div>
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={isSubmitting} className="login-button">
               Login
             </button>
           </Form>

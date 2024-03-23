@@ -1,7 +1,7 @@
 .app {
   /* Other styles for your app */
   /* background-image: url('https://res.cloudinary.com/doyp4tk82/image/upload/v1711090667/Untitled_design_hznw9p.png'); */
-  background-color: lightyellow;
+  background-color: rgb(221, 169, 73);
   background-size: cover; /* Fit the background image within the container */
   background-position: center; /* Center the background image */
   background-repeat: repeat; /* Repeat the background image */
@@ -9,13 +9,13 @@
 
 
 .welcome-message {
-  background-color: blue;
+  background-color: tan;
   margin-top:60px; /* Adjust the margin-top value as needed to move it down */
   color: white;
   font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
 }
 body {
-  background-color: yellow; /* Set the background color to yellow */
+  background-color: orange; /* Set the background color to yellow */
   font-family: lucida sans unicode, sans-serif; /* Set a default font family */
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
@@ -79,11 +79,16 @@ main {
   background-repeat: no-repeat; /* Prevent the image from repeating */
 }
 
-.home-container img {
-  max-width: 600px;
-  height: auto;
-  margin-bottom: 20px;
+.home-video {
+  width: 100%; /* Adjust the width as needed */
+  max-width: 800px; /* Set a maximum width if necessary */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure the video is displayed as a block element */
+  margin: 20px auto; /* Center the video horizontally and add some margin */
 }
+
+
+
 
 .home-container p {
   margin-bottom: 20px;
@@ -120,12 +125,12 @@ main {
 
 /* Hover effect */
 .first-paragraph:hover {
-  background-color: yellow;
+  background-color: orange;
   color: black;
 }
 
 .second-paragraph:hover {
-  background-color: yellow;
+  background-color: orange;
   color: black;
 }
 
@@ -152,7 +157,7 @@ main {
   border-radius: 0px; /* Add border radius for rounded corners if desired */
   justify-items: center; 
   /* background-image: url('https://as1.ftcdn.net/v2/jpg/04/16/70/18/1000_F_416701849_ThbORgJnpuoIE7TWKqXZ7x3atFTKoBI8.jpg'); */
-  background-color: rgb(14, 14, 83);
+  background-color: #0d0d4e;
   background-size: 25%; /* Zoom out the background image */
   background-position: center; /* Center the background image */
   background-repeat: repeat; /* Repeat the background image */
@@ -181,7 +186,7 @@ main {
 
 
 .car-card:hover {
-  background-color: yellow;
+  background-color: orange;
   transform: scale(1.05);
 }
 
@@ -190,7 +195,7 @@ main {
   width: 100%;
   max-height: 150px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 1303px;
   margin-bottom: 10px;
 }
 
@@ -256,10 +261,10 @@ main {
 .review-form input[type="email"]:hover,
 .review-form textarea:hover {
   text-decoration: none;
-  color: yellow;
+  color: orange;
   /* background-color: yellow; */
   padding: 8px 15px;
-  border-radius: 1030px; /* Make the buttons round */
+  border-radius: 5; /* Make the buttons round */
   transition: background-color 0.3s, color 0.3s; /* Add transition for smoother hover effect */
 }
 
@@ -267,9 +272,9 @@ main {
 .review-form input[type="text"]:focus,
 .review-form input[type="email"]:focus,
 .review-form textarea:focus {
-  background-color: yellow;
+  background-color: orange;
   color: black;
-  border-radius: 50px; /* Make the buttons round */
+  border-radius: 5px; /* Make the buttons round */
 }
 
 .review-form {
@@ -281,10 +286,10 @@ main {
   margin: 0 auto; /* Center horizontally */
   padding: 10px 20px;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 1030px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: grey;
-  color: yellow;
+  color: orange;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s; /* Add transition for smooth effect */
@@ -422,7 +427,7 @@ main {
 }
 
 .navbar ul li a:hover {
-  background-color: yellow;
+  background-color: orange;
   color: black;
 }
 
@@ -469,7 +474,7 @@ main {
 .input-group input[type="text"]:hover,
 .input-group input[type="password"]:hover,
 .input-group input[type="email"]:hover {
-  background-color: yellow; /* Adjust the background color as needed */
+  background-color: orange; /* Adjust the background color as needed */
   color: black; /* Adjust the text color as needed */
 }
 
@@ -504,3 +509,79 @@ main {
   font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
 }
 
+/* login css */
+/* login.css */
+
+/* Container styles */
+.login-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px; /* Adjust the top margin as needed */
+  margin-bottom: 20px; /* Adjust the bottom margin as needed */
+  font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
+}
+
+/* Text styles */
+.already-registered {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.already-registered a {
+  color: blue;
+}
+
+/* Input group styles */
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="email"] {
+  background-color: white; /* Adjust the background color as needed */
+  color: black; /* Adjust the text color as needed */
+  border-color: blue; /* Adjust the border color as needed */
+  border-radius: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.input-group input[type="text"]:hover,
+.input-group input[type="password"]:hover,
+.input-group input[type="email"]:hover {
+  background-color: orange; /* Adjust the background color as needed */
+  color: black; /* Adjust the text color as needed */
+}
+
+/* Error message styles */
+.error-message {
+  color: red;
+}
+
+/* Button styles */
+.login-button {
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.login-button:hover {
+  background-color: lightblue;
+  color: black;
+}
