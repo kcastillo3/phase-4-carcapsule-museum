@@ -49,7 +49,7 @@ const Login = ({ onLogin, isLoggedIn }) => {
               <Field type="password" name="password" />
               <ErrorMessage name="password" component="div" className="error-message" />
             </div>
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={isSubmitting} className="login-button">
               Login
             </button>
           </Form>
