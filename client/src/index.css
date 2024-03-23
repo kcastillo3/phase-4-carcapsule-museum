@@ -256,43 +256,62 @@ main {
   cursor: pointer;
 }
 
-
-.review-form input[type="text"]:hover,
-.review-form input[type="email"]:hover,
-.review-form textarea:hover {
-  text-decoration: none;
-  color: orange;
-  /* background-color: yellow; */
-  padding: 8px 15px;
-  border-radius: 5; /* Make the buttons round */
-  transition: background-color 0.3s, color 0.3s; /* Add transition for smoother hover effect */
+/* ReviewForm */
+.review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the form elements horizontally */
+  justify-content: center; /* Centers the form elements vertically for aesthetics */
+  max-width: 400px; /* Adjusts the max-width for a more balanced layout */
+  margin: 20px auto; /* Centers the form on the page and adds vertical spacing */
+  padding: 20px; /* Provides padding around the form elements */
+  border: 1px solid #ccc; /* Adds a subtle border around the form */
+  border-radius: 10px; /* Softens the edges of the form */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a light shadow for depth */
+  background-color: #f9f9f9; /* A light background color for the form */
 }
 
+.review-form input[type="text"],
+.review-form input[type="email"],
+.review-form textarea {
+  width: 100%; /* Ensures that input fields take up the full width of the form */
+  padding: 10px; /* Adds padding inside the input fields for better text visibility */
+  margin-bottom: 15px; /* Adds space between each form element */
+  border: 1px solid #ccc; /* Defines a subtle border for the input fields */
+  border-radius: 5px; /* Rounds the corners of the input fields */
+  box-sizing: border-box; /* Ensures padding does not affect the total width of the input fields */
+}
 
 .review-form input[type="text"]:focus,
 .review-form input[type="email"]:focus,
 .review-form textarea:focus {
-  background-color: orange;
-  color: black;
-  border-radius: 5px; /* Make the buttons round */
+  outline: none; /* Removes the default focus outline */
+  border-color: #007bff; /* Changes the border color to highlight focus */
+  background-color: #e7f3ff; /* A light background color on focus for better visibility */
+  color: #333; /* Ensures text remains visible and clear */
 }
 
-.review-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically */
-  max-width: 300px; /* Adjust the max-width as needed */
-  margin: 0 auto; /* Center horizontally */
-  padding: 10px 20px;
-  border: 1px solid #ccc;
-  border-radius: 1030px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: grey;
-  color: orange;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s; /* Add transition for smooth effect */
+.review-form input[type="text"]:hover,
+.review-form input[type="email"]:hover,
+.review-form textarea:hover {
+  background-color: #f3f3f3; /* A subtle change in background color on hover */
+  border-color: #bbb; /* Lightens the border color on hover for a responsive feel */
+}
+
+.review-form button {
+  width: auto; /* Allows the button to fit the text content */
+  padding: 10px 20px; /* Provides ample padding for clickable area */
+  background-color: #007bff; /* Button color that stands out */
+  color: white; /* Text color for legibility */
+  border: none; /* Removes the default border */
+  border-radius: 5px; /* Rounds the button edges */
+  cursor: pointer; /* Changes the cursor to a pointer to indicate clickability */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for visual feedback */
+}
+
+.review-form button:hover {
+  background-color: #0056b3; /* A darker shade for the button on hover */
+  color: #fff; /* Keeps the text color consistent for readability */
 }
 
 
@@ -584,4 +603,78 @@ main {
 .login-button:hover {
   background-color: lightblue;
   color: black;
+}
+
+/* New CSS */
+/* Succesful Message */
+
+.successful-login-container {
+  background-color: white; /* Aligns with other container backgrounds */
+  color: #333; /* A softer color for text, fitting your overall design */
+  border-radius: 10px; /* Consistent with your card design */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  max-width: 600px; /* Adjust as needed for your layout */
+  padding: 40px; /* Ample padding for aeration */
+  text-align: center; /* Center the text within */
+  margin: 100px auto 20px; /* Center the component in the viewport, adjust as needed */
+  transition: transform 0.3s ease-in-out; /* Smooth transition for interaction */
+}
+
+.successful-login-container h2 {
+  color: #007bff; /* Bright color for emphasis, matching your button colors */
+  margin-bottom: 20px; /* Space between the header and the paragraph */
+}
+
+.successful-login-container p {
+  margin-bottom: 30px; /* Space before the button */
+  color: #555; /* Slightly darker than the text for contrast */
+}
+
+.successful-login-container button {
+  background-color: #007bff; /* A vibrant color for action buttons */
+  color: white; /* Contrast color for legibility */
+  border: none;
+  border-radius: 20px; /* Rounded edges for a modern look */
+  padding: 10px 20px; /* Adequate padding for touch targets */
+  cursor: pointer; /* Pointer cursor on hover for affordance */
+  transition: background-color 0.3s, color 0.3s; /* Smooth color transition for interaction */
+}
+
+.successful-login-container button:hover {
+  background-color: lightblue; /* Lighter shade for hover state */
+  color: black; /* Color change for visual feedback */
+}
+
+/* UserAccount */
+.user-account-container {
+  background-color: white; /* Harmonizes with the rest of the app's design */
+  color: #333; /* Provides a soft, readable text color */
+  border-radius: 10px; /* Keeps consistency with your rounded design elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtly lifts the container off the page */
+  max-width: 600px; /* Adjustable to fit your design's content width */
+  padding: 40px; /* Offers breathing room for the container's content */
+  text-align: center; /* Centers the text for a balanced visual composition */
+  margin: 100px auto; /* Vertically spaces the container from other elements */
+  transition: transform 0.3s ease-in-out; /* Adds a dynamic interaction feedback */
+}
+
+.user-account-container h2 {
+  color: #007bff; /* Uses your primary action color for visual continuity */
+  margin-bottom: 25px; /* Separates the header from the button */
+}
+
+.user-account-container button {
+  background-color: #007bff; /* Aligns with your action color for consistency */
+  color: white; /* Ensures text is easily legible against the button background */
+  border: none; /* Removes the default border for a cleaner look */
+  border-radius: 20px; /* Softens the button edges to match your design language */
+  padding: 10px 20px; /* Provides ample space for interaction */
+  cursor: pointer; /* Signals to users that the button is clickable */
+  transition: background-color 0.3s, color 0.3s; /* Smoothly transitions colors on hover for a polished interaction experience */
+  font-weight: bold; /* Emphasizes the button text */
+}
+
+.user-account-container button:hover {
+  background-color: #0056b3; /* Darkens the button on hover for a tactile feel */
+  color: white; /* Keeps the text color constant for readability */
 }
