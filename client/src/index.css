@@ -152,7 +152,7 @@ main {
   border-radius: 0px; /* Add border radius for rounded corners if desired */
   justify-items: center; 
   /* background-image: url('https://as1.ftcdn.net/v2/jpg/04/16/70/18/1000_F_416701849_ThbORgJnpuoIE7TWKqXZ7x3atFTKoBI8.jpg'); */
-  background-color: rgb(14, 14, 83);
+  background-color: #0d0d4e;
   background-size: 25%; /* Zoom out the background image */
   background-position: center; /* Center the background image */
   background-repeat: repeat; /* Repeat the background image */
@@ -190,7 +190,7 @@ main {
   width: 100%;
   max-height: 150px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 1303px;
   margin-bottom: 10px;
 }
 
@@ -259,7 +259,7 @@ main {
   color: yellow;
   /* background-color: yellow; */
   padding: 8px 15px;
-  border-radius: 1030px; /* Make the buttons round */
+  border-radius: 5; /* Make the buttons round */
   transition: background-color 0.3s, color 0.3s; /* Add transition for smoother hover effect */
 }
 
@@ -269,7 +269,7 @@ main {
 .review-form textarea:focus {
   background-color: yellow;
   color: black;
-  border-radius: 50px; /* Make the buttons round */
+  border-radius: 5px; /* Make the buttons round */
 }
 
 .review-form {
@@ -281,7 +281,7 @@ main {
   margin: 0 auto; /* Center horizontally */
   padding: 10px 20px;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 1030px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: grey;
   color: yellow;
@@ -501,3 +501,79 @@ main {
   font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
 }
 
+/* login css */
+/* login.css */
+
+/* Container styles */
+.login-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px; /* Adjust the top margin as needed */
+  margin-bottom: 20px; /* Adjust the bottom margin as needed */
+  font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
+}
+
+/* Text styles */
+.already-registered {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.already-registered a {
+  color: blue;
+}
+
+/* Input group styles */
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="email"] {
+  background-color: white; /* Adjust the background color as needed */
+  color: black; /* Adjust the text color as needed */
+  border-color: blue; /* Adjust the border color as needed */
+  border-radius: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.input-group input[type="text"]:hover,
+.input-group input[type="password"]:hover,
+.input-group input[type="email"]:hover {
+  background-color: yellow; /* Adjust the background color as needed */
+  color: black; /* Adjust the text color as needed */
+}
+
+/* Error message styles */
+.error-message {
+  color: red;
+}
+
+/* Button styles */
+.login-button {
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: #007bff; /* Adjust the background color as needed */
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Add transition for smooth hover effect */
+}
+
+.login-button:hover {
+  background-color: lightblue;
+  color: black; /* Adjust the hover color as needed */
+}
