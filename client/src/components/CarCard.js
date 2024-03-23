@@ -4,33 +4,31 @@ import ReviewList from './ReviewList';
 import '../index.css';
 
 const CarCard = ({ car }) => {
-  const [reviews, setReviews] = useState([]);
+  const [carDetails, setCarDetails] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleReviewSubmit = (review) => {
-    setReviews([...reviews, { ...review, replies: [] }]);
-  };
-
-  const handleReply = (reviewIndex, replyText) => {
-    setReviews((prevReviews) => {
-      const updatedReviews = [...prevReviews];
-      updatedReviews[reviewIndex].replies.push(replyText);
-      return updatedReviews;
-    });
-  };
-
-  const handleCardClick = () => {
-    setIsModalOpen(true);
+  const handleCardClick = async () => {
+    try {
+      const response = await fetch(`http://localhost:5555/cars_card/${car.id}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch car details');
+      }
+      const details = await response.json();
+      setCarDetails(details); // Update the state with fetched car details
+      setIsModalOpen(true); // Open the modal to show car details
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
+    setIsModalOpen(false); // Close the modal
   };
 
   return (
     <>
       <div className="car-card" onClick={handleCardClick}>
-        <img src={car.imageUrl} alt={car.make} />
+        <img src={car.imageUrl} alt={`${car.make} ${car.model}`} />
         <h2>{car.year} {car.make} {car.model}</h2>
         <p>{car.description}</p>
       </div>
@@ -38,11 +36,12 @@ const CarCard = ({ car }) => {
       {isModalOpen && (
         <div className="modal-overlay" onClick={handleCloseModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <img src={car.imageUrl} alt={car.make} />
-            <h2>{car.year} {car.make} {car.model}</h2>
-            <p>{car.description}</p>
-            <ReviewForm onSubmit={handleReviewSubmit} />
-            <ReviewList reviews={reviews} onReply={handleReply} />
+            {/* Use fetched carDetails for displaying detailed information */}
+            <img src={carDetails ? carDetails.imageUrl : car.imageUrl} alt={car.make} />
+            <h2>{carDetails ? `${carDetails.year} ${carDetails.make} ${carDetails.model}` : `${car.year} ${car.make} ${car.model}`}</h2>
+            <p>{carDetails ? carDetails.description : car.description}</p>
+            <ReviewForm carId={car.id} /> {/* Pass carId to ReviewForm */}
+            <ReviewList carId={car.id} /> {/* Pass carId to ReviewList */}
             <button className="close-modal" onClick={handleCloseModal}>Close</button>
           </div>
         </div>

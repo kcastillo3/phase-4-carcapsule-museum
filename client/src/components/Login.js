@@ -4,12 +4,11 @@ import { useHistory, Redirect } from 'react-router-dom';
 
 const Login = ({ onLogin, isLoggedIn }) => {
   const history = useHistory();
-  
+
   const validate = values => {
-    let errors = {};
-    // Basic validation logic
+    const errors = {};
     if (!values.username) {
-      errors.username = 'Username is required';
+      errors.username = 'Username is required'; // Assuming this is actually the email field - we gotta check/go over this for clarity
     }
     if (!values.password) {
       errors.password = 'Password is required';
@@ -17,31 +16,53 @@ const Login = ({ onLogin, isLoggedIn }) => {
     return errors;
   };
 
-  // If the user is already logged in, redirect them to the home page or dashboard
   if (isLoggedIn) {
     return <Redirect to="/" />;
   }
 
   return (
     <div className="login-container">
-      <img src="/path/to/your/image.jpg" alt="Login Image" className="login-image" />
+      <video autoPlay muted loop className="login-video">
+        <source src="https://res.cloudinary.com/doyp4tk82/video/upload/v1711157406/car-gif_uoe0bk.mp4" />
+        Your browser does not support the video tag.
+      </video>
       <h2>Login</h2>
       <Formik
         initialValues={{ username: '', password: '' }}
         validate={validate}
         onSubmit={(values, { setSubmitting }) => {
-          console.log('Login attempted with:', values);
-          // Here, we would typically validate the credentials against our backend
-          // For now, we'll assume the credentials are valid and proceed to log in
-          onLogin(); // Call the onLogin function passed as a prop
-          setSubmitting(false);
-          history.push('/login-success'); // Navigate to a success page or dashboard
+          fetch('http://localhost:5555/users/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: values.username, // Assuming the username field is used for email - we gotta check/go over this again
+              password: values.password,
+            }),
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Login failed');
+            }
+            return response.json();
+          })
+          .then(data => {
+            console.log('Login successful:', data);
+            onLogin(true); // Update the login state
+            history.push('/login-success'); // Redirect to the "Successful Login" page
+          })
+          .catch(error => {
+            console.error('Error during login:', error);
+            alert('Failed to login. Please check your credentials.');
+          })
+          .finally(() => setSubmitting(false));
         }}
       >
         {({ isSubmitting }) => (
           <Form>
             <div className="input-group">
-              <label htmlFor="username">Username:</label>
+              <label htmlFor="username">Username (Email):</label>
               <Field type="text" name="username" />
               <ErrorMessage name="username" component="div" className="error-message" />
             </div>
@@ -50,7 +71,7 @@ const Login = ({ onLogin, isLoggedIn }) => {
               <Field type="password" name="password" />
               <ErrorMessage name="password" component="div" className="error-message" />
             </div>
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={isSubmitting} className="login-button">
               Login
             </button>
           </Form>
