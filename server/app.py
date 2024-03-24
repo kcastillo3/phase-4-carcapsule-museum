@@ -9,7 +9,7 @@ from flask_restful import Resource
 # Local imports
 from config import app, db, api
 from models import Users, Reviews, Cars
-# Add your model imports
+from werkzeug.security import generate_password_hash, check_password_hash  # For password hashing
 
 @app.route('/')
 def index():
@@ -49,19 +49,29 @@ def get_reviews_by_car(car_id):
     ]
     return jsonify(reviews_list)
 
-@app.route('/review_form/<int:car_id>', methods=['POST'])
-def add_review_for_car(car_id):
+@app.route('/submit_review/<int:car_id>', methods=['POST'])
+def submit_review(car_id):
     data = request.get_json()
     print("Received data:", data)  # Debugging line to log received data
-    if not data or 'user_id' not in data or 'review' not in data:
-        return jsonify({'error': 'Missing required fields: user_id or review'}), 400
+    if not data or 'name' not in data or 'email' not in data or 'review' not in data:
+        return jsonify({'error': 'Missing required fields: name, email, or review'}), 400
     
-    # Assuming you have a Reviews model and it's correctly set up
+    name = data['name']
+    email = data['email']
+    review = data['review']
+
+    # Basic validation
+    if not name.strip() or not email.strip() or not review.strip():
+        return jsonify({'error': 'Please fill out all fields'}), 400
+    
+    # Save review to the database
     try:
         new_review = Reviews(
             car_id=car_id,
-            user_id=data['user_id'],
-            content=data['review']
+            name=name,
+            email=email,
+            review=review
+             # Assuming 'content' is the field name in your Reviews model
         )
         db.session.add(new_review)
         db.session.commit()
