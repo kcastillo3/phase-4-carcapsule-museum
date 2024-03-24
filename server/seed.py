@@ -168,7 +168,7 @@ def seed_data():
             review = Reviews(
                 user_id=choice(users).id,
                 car_id=car.id,
-                content=fake.paragraph()
+                review=fake.paragraph()
             )
             db.session.add(review)
 

@@ -41,10 +41,10 @@ class Reviews(db.Model, SerializerMixin):
     car_id = Column(Integer, ForeignKey('cars.id'), nullable=False)
     name = Column(String(100))  # New column to store reviewer's name
     email = Column(String(255))  # New column to store reviewer's email
-    content = Column(Text, nullable=False)
+    review = Column(Text, nullable=False)
 
     user = relationship("Users", back_populates="reviews")
     car = relationship("Cars", back_populates="reviews")
 
     def __repr__(self):
-        return f"<Review(id={self.id}, user_id={self.user_id}, car_id={self.car_id}, content={self.content})>"
+        return f"<Review(id={self.id}, user_id={self.user_id}, car_id={self.car_id}, review={self.review})>"
