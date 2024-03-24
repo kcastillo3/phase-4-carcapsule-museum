@@ -3,13 +3,22 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, jsonify
+from flask import request, jsonify, Flask
 from flask_restful import Resource
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_cors import CORS
+
+# After creating your Flask app instance
+app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})  # Allow requests from your React frontend
+
+# Your route definitions follow
+
 
 # Local imports
 from config import app, db, api
 from models import Users, Reviews, Cars
-from werkzeug.security import generate_password_hash, check_password_hash  # For password hashing
+# Add your model imports
 
 @app.route('/')
 def index():
@@ -41,7 +50,7 @@ def get_reviews_by_car(car_id):
     reviews_list = [
         {
             'id': review.id,
-            'review': review.review,
+            'content': review.content,
             'user_id': review.user_id,
             'car_id': review.car_id
         }
@@ -49,6 +58,26 @@ def get_reviews_by_car(car_id):
     ]
     return jsonify(reviews_list)
 
+@app.route('/review_form/<int:car_id>', methods=['POST'])
+def add_review_for_car(car_id):
+    data = request.get_json()
+    print("Received data:", data)  # Debugging line to log received data
+    if not data or 'user_id' not in data or 'review' not in data:
+        return jsonify({'error': 'Missing required fields: user_id or review'}), 400
+    
+    # Assuming you have a Reviews model and it's correctly set up
+    try:
+        new_review = Reviews(
+            car_id=car_id,
+            user_id=data['user_id'],
+            content=data['review']
+        )
+        db.session.add(new_review)
+        db.session.commit()
+        return jsonify({'message': 'Review added successfully'}), 201
+    except Exception as e:  # Catch any errors during database operations
+        print(e)  # Log the exception
+        return jsonify({'error': 'Failed to add review'}), 500
 
 @app.route('/review_list/<int:id>', methods=['PUT'])
 def update_review(id):
