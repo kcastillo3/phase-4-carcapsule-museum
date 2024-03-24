@@ -49,36 +49,6 @@ def get_reviews_by_car(car_id):
     ]
     return jsonify(reviews_list)
 
-@app.route('/submit_review/<int:car_id>', methods=['POST'])
-def submit_review(car_id):
-    data = request.get_json()
-    print("Received data:", data)  # Debugging line to log received data
-    if not data or 'name' not in data or 'email' not in data or 'review' not in data:
-        return jsonify({'error': 'Missing required fields: name, email, or review'}), 400
-    
-    name = data['name']
-    email = data['email']
-    review = data['review']
-
-    # Basic validation
-    if not name.strip() or not email.strip() or not review.strip():
-        return jsonify({'error': 'Please fill out all fields'}), 400
-    
-    # Save review to the database
-    try:
-        new_review = Reviews(
-            car_id=car_id,
-            name=name,
-            email=email,
-            review=review
-             # Assuming 'content' is the field name in your Reviews model
-        )
-        db.session.add(new_review)
-        db.session.commit()
-        return jsonify({'message': 'Review added successfully'}), 201
-    except Exception as e:  # Catch any errors during database operations
-        print(e)  # Log the exception
-        return jsonify({'error': 'Failed to add review'}), 500
 
 @app.route('/review_list/<int:id>', methods=['PUT'])
 def update_review(id):
