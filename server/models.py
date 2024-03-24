@@ -39,9 +39,9 @@ class Reviews(db.Model, SerializerMixin):
     id = Column(Integer, primary_key=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     car_id = Column(Integer, ForeignKey('cars.id'), nullable=False)
-    name = Column(String(100))  # New column to store reviewer's name
-    email = Column(String(255))  # New column to store reviewer's email
-    review = Column(Text, nullable=False)
+    name = Column(String)
+    email = Column(String)
+    review = Column(String) 
 
     user = relationship("Users", back_populates="reviews")
     car = relationship("Cars", back_populates="reviews")

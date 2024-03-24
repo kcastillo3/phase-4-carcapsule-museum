@@ -41,7 +41,7 @@ def get_reviews_by_car(car_id):
     reviews_list = [
         {
             'id': review.id,
-            'content': review.content,
+            'review': review.review,
             'user_id': review.user_id,
             'car_id': review.car_id
         }
