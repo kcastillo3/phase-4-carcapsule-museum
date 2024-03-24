@@ -3,8 +3,17 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, jsonify
+from flask import request, jsonify, Flask
 from flask_restful import Resource
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_cors import CORS
+
+# After creating your Flask app instance
+app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})  # Allow requests from your React frontend
+
+# Your route definitions follow
+
 
 # Local imports
 from config import app, db, api
