@@ -34,6 +34,17 @@ class Cars(db.Model, SerializerMixin):
     def __repr__(self):
         return f"<Car(id={self.id}, name={self.name}, make={self.make}, model={self.model}, year={self.year}, description={self.description}, imageUrl={self.imageUrl})>"
 
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "make": self.make,
+            "model": self.model,
+            "year": self.year,
+            "description": self.description,
+            "imageUrl": self.imageUrl,
+        }
+
 class Reviews(db.Model, SerializerMixin):
     __tablename__ = 'reviews'
 
