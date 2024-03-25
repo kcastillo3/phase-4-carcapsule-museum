@@ -7,8 +7,8 @@ const Login = ({ onLogin, isLoggedIn }) => {
 
   const validate = values => {
     const errors = {};
-    if (!values.username) {
-      errors.username = 'Username is required'; // Assuming this is actually the email field - we gotta check/go over this for clarity
+    if (!values.email) {
+      errors.email = 'Email is required';
     }
     if (!values.password) {
       errors.password = 'Password is required';
@@ -28,7 +28,7 @@ const Login = ({ onLogin, isLoggedIn }) => {
       </video>
       <h2>Login</h2>
       <Formik
-        initialValues={{ username: '', password: '' }}
+        initialValues={{ email: '', password: '' }}
         validate={validate}
         onSubmit={(values, { setSubmitting }) => {
           fetch('http://localhost:5555/users/login', {
@@ -37,7 +37,7 @@ const Login = ({ onLogin, isLoggedIn }) => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              email: values.username, // Assuming the username field is used for email - we gotta check/go over this again
+              email: values.email,
               password: values.password,
             }),
           })
@@ -49,8 +49,10 @@ const Login = ({ onLogin, isLoggedIn }) => {
           })
           .then(data => {
             console.log('Login successful:', data);
-            onLogin(true); // Update the login state
-            history.push('/login-success'); // Redirect to the "Successful Login" page
+            // Assuming the login was successful, and we have implemented the onLogin function
+            // correctly in our App component or where it's being passed as props
+            onLogin(data.user_id, data.username); // Update application state with user info
+            history.push('/login-success'); // Redirect to the SuccessfulLogin component
           })
           .catch(error => {
             console.error('Error during login:', error);
@@ -62,9 +64,9 @@ const Login = ({ onLogin, isLoggedIn }) => {
         {({ isSubmitting }) => (
           <Form>
             <div className="input-group">
-              <label htmlFor="username">Username (Email):</label>
-              <Field type="text" name="username" />
-              <ErrorMessage name="username" component="div" className="error-message" />
+              <label htmlFor="email">Email:</label>
+              <Field type="email" name="email" />
+              <ErrorMessage name="email" component="div" className="error-message" />
             </div>
             <div className="input-group">
               <label htmlFor="password">Password:</label>

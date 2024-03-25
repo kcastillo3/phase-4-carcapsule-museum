@@ -3,8 +3,17 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, jsonify
+from flask import request, jsonify, Flask
 from flask_restful import Resource
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_cors import CORS
+
+# After creating your Flask app instance
+app = Flask(__name__)
+CORS(app, resources={r"/add-car": {"origins": "http://localhost:3000"}})
+
+# Your route definitions follow
+
 
 # Local imports
 from config import app, db, api
@@ -14,6 +23,30 @@ from models import Users, Reviews, Cars
 @app.route('/')
 def index():
     return '<h1>Project Server</h1>'
+
+@app.route('/add-car', methods=['POST'])
+def add_car():
+    try:
+        data = request.json
+        existing_car = Cars.query.filter_by(name=data['name']).first()
+        if existing_car:
+            return jsonify({"error": "A car with the same name already exists"}), 400
+
+        new_car = Cars(
+            name=data['name'],
+            make=data['make'],
+            model=data['model'],
+            year=data['year'],
+            description=data['description'],
+            imageUrl=data['imageUrl']
+        )
+        db.session.add(new_car)
+        db.session.commit()
+        # Ensure our Cars model has a method to serialize the data when using SerializerMixin
+        return jsonify({"message": "Car added successfully", "car": new_car.serialize()}), 201
+    except Exception as e:
+        print(e)
+        return jsonify({"error": "An error occurred while adding the car"}), 500
 
 @app.route('/cars_card/<int:car_id>', methods=['GET'])
 def get_car_details(car_id):
@@ -34,7 +67,19 @@ def get_car_details(car_id):
 
 @app.route('/review_list/<int:car_id>', methods=['GET'])
 def get_reviews_by_car(car_id):
-    reviews = Reviews.query.filter_by(car_id=car_id).all()
+    # Join Reviews with Users to fetch username along with review data
+    reviews = db.session.query(
+        Reviews.id,
+        Reviews.content,
+        Reviews.user_id,
+        Reviews.car_id,
+        Users.username
+    ).join(
+        Users, Reviews.user_id == Users.id
+    ).filter(
+        Reviews.car_id == car_id
+    ).all()
+
     if not reviews:
         return jsonify({'message': 'No reviews found for this car'}), 404
 
@@ -42,6 +87,7 @@ def get_reviews_by_car(car_id):
         {
             'id': review.id,
             'content': review.content,
+            'username': review.username,  # Include the username in the response
             'user_id': review.user_id,
             'car_id': review.car_id
         }
@@ -56,7 +102,7 @@ def add_review_for_car(car_id):
     if not data or 'user_id' not in data or 'review' not in data:
         return jsonify({'error': 'Missing required fields: user_id or review'}), 400
     
-    # Assuming you have a Reviews model and it's correctly set up
+    
     try:
         new_review = Reviews(
             car_id=car_id,
@@ -72,16 +118,16 @@ def add_review_for_car(car_id):
 
 @app.route('/review_list/<int:id>', methods=['PUT'])
 def update_review(id):
-    review = Reviews.query.get(id)
+    review = Reviews.query.get(id)  # Fetch the review by its ID
     if not review:
-        return jsonify({'message': 'Review not found'}), 404
+        return jsonify({'message': 'Review not found'}), 404  # Return a 404 if not found
     
     data = request.json
-    review.name = data.get('name', review.name)
-    review.email = data.get('email', review.email)
-    review.review = data.get('review', review.review)
+    # Update the 'content' field of the review with the new content provided in the request
+    # Make sure the frontend sends the updated content with the key 'content'
+    review.content = data.get('content', review.content)
     
-    db.session.commit()
+    db.session.commit()  # Commit the changes to the database
     return jsonify({'message': 'Review updated successfully'}), 200
 
 @app.route('/review_list/<int:id>', methods=['DELETE'])
@@ -124,12 +170,17 @@ def register_user():
     # Hash the password
     password_hash = generate_password_hash(password)
 
-#     # Create and add new user to database
+    # Create and add new user to database
     new_user = Users(email=email, username=username, password_hash=password_hash)
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({'message': 'User registered successfully'}), 201
+    # Return user_id and username along with success message
+    return jsonify({
+        'message': 'User registered successfully',
+        'user_id': new_user.id,
+        'username': new_user.username
+    }), 201
 
 # Log in an existing user
 @app.route('/users/login', methods=['POST'])
@@ -138,13 +189,11 @@ def login_user():
     email = data.get('email')
     password = data.get('password')
 
-#     # Find user by email
     user = Users.query.filter_by(email=email).first()
 
-#     # Check if user exists and password is correct
     if user and check_password_hash(user.password_hash, password):
-        # Return success message or JWT token for authentication
-        return jsonify({'message': 'Login successful'}), 200
+        # Include user_id in the successful login response
+        return jsonify({'message': 'Login successful', 'user_id': user.id}), 200
     else:
         return jsonify({'message': 'Invalid email or password'}), 401
     
