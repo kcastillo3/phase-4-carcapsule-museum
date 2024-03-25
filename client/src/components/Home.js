@@ -2,11 +2,13 @@ import React from 'react';
 
 const Home = () => {
   return (
-    <div>
-      <h2>Welcome to Car Capsule Museum!</h2>
-      <img src="https://res.cloudinary.com/doyp4tk82/image/upload/v1710902107/Black_Elegant_Collage_Artist_Portfolio_Presentation_e3ldov.jpg" alt="Car Capsule Museum" />
-      <p>Discover a journey through automotive history at Car Capsule Museum. Our museum showcases a curated collection of classic cars from various eras, highlighting the evolution of automotive design and technology.</p>
-      <p>This welcome message is inspired by our passion for preserving and sharing the legacy of iconic automobiles. We aim to provide visitors with an immersive experience that celebrates the artistry and craftsmanship of these timeless vehicles.</p>
+    <div className="home-container">
+      <h2 className="welcome-message">Showcase Saturday Coming Soon!</h2>
+      <video autoPlay muted loop className="home-video">
+        <source src="https://res.cloudinary.com/doyp4tk82/video/upload/v1711158634/Car_Capsulr_Museum_mu6ikk.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <p className="second-paragraph">Explore the rich history of automotive innovation at our Car Museum. Discover iconic classics and rare treasures that tell the story of motoring excellence. Immerse yourself in the beauty and craftsmanship of vintage cars. Come experience the passion and nostalgia of the automotive world with us.</p>
     </div>
   );
 }

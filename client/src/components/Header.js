@@ -1,32 +1,24 @@
-// Header.js
+import React from 'react';
+import Navbar from './Navbar'; 
+import '../index.css'; // Import the CSS file for styling
 
-import React from 'react'
-import NavBar from './Navbar'
-import '../index.css'
-import logo from '../../src/logo192.png'
 
-const Header = () => {
+// Updated Header to accept isLoggedIn and onLogout props
+const Header = ({ isLoggedIn, onLogout }) => {
   return (
-    <header>
-      <div
-        className="container"
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          boxShadow: '1px 1px 3px #333',
-          fontSize: '20px',
-        }}
-      >
-        <img
-          style={{ height: '60px', width: '60px' }}
-          src={logo}
-          alt="Car Capsule Museum Logo"
-          className="logo"
-        />
-        <NavBar />
+    <header className="header">
+      <div className="container">
+        <img src="https://res.cloudinary.com/doyp4tk82/image/upload/v1711080425/Untitled_design_yk475e.jpg" alt="Car Capsule Museum Logo" className="logo" />
+        <div className="navbar-wrapper">
+          <Navbar isLoggedIn={isLoggedIn} onLogout={onLogout} />
+        </div>
+      </div>
+      {/* Main content area */}
+      <div className="main-content">
+        {/* Your main content goes here */}
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
