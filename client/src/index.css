@@ -1,7 +1,7 @@
 .app {
   /* Other styles for your app */
   /* background-image: url('https://res.cloudinary.com/doyp4tk82/image/upload/v1711090667/Untitled_design_hznw9p.png'); */
-  background-color: lightyellow;
+  background-color: rgb(221, 169, 73);
   background-size: cover; /* Fit the background image within the container */
   background-position: center; /* Center the background image */
   background-repeat: repeat; /* Repeat the background image */
@@ -9,13 +9,13 @@
 
 
 .welcome-message {
-  background-color: blue;
+  background-color: tan;
   margin-top:60px; /* Adjust the margin-top value as needed to move it down */
   color: white;
   font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
 }
 body {
-  background-color: yellow; /* Set the background color to yellow */
+  background-color: orange; /* Set the background color to yellow */
   font-family: lucida sans unicode, sans-serif; /* Set a default font family */
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
@@ -79,10 +79,12 @@ main {
   background-repeat: no-repeat; /* Prevent the image from repeating */
 }
 
-.home-container img {
-  max-width: 600px;
-  height: auto;
-  margin-bottom: 20px;
+.home-video {
+  width: 100%; /* Adjust the width as needed */
+  max-width: 800px; /* Set a maximum width if necessary */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure the video is displayed as a block element */
+  margin: 20px auto; /* Center the video horizontally and add some margin */
 }
 
 .home-container p {
@@ -120,12 +122,12 @@ main {
 
 /* Hover effect */
 .first-paragraph:hover {
-  background-color: yellow;
+  background-color: orange;
   color: black;
 }
 
 .second-paragraph:hover {
-  background-color: yellow;
+  background-color: orange;
   color: black;
 }
 
@@ -152,13 +154,12 @@ main {
   border-radius: 0px; /* Add border radius for rounded corners if desired */
   justify-items: center; 
   /* background-image: url('https://as1.ftcdn.net/v2/jpg/04/16/70/18/1000_F_416701849_ThbORgJnpuoIE7TWKqXZ7x3atFTKoBI8.jpg'); */
-  background-color: rgb(14, 14, 83);
+  background-color: #0d0d4e;
   background-size: 25%; /* Zoom out the background image */
   background-position: center; /* Center the background image */
   background-repeat: repeat; /* Repeat the background image */
 
 }
-
 
 /* car card css */
 .car-card {
@@ -181,7 +182,7 @@ main {
 
 
 .car-card:hover {
-  background-color: yellow;
+  background-color: orange;
   transform: scale(1.05);
 }
 
@@ -190,7 +191,7 @@ main {
   width: 100%;
   max-height: 150px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 1303px;
   margin-bottom: 10px;
 }
 
@@ -251,50 +252,63 @@ main {
   cursor: pointer;
 }
 
-
-.review-form input[type="text"]:hover,
-.review-form input[type="email"]:hover,
-.review-form textarea:hover {
-  text-decoration: none;
-  color: yellow;
-  /* background-color: yellow; */
-  padding: 8px 15px;
-  border-radius: 1030px; /* Make the buttons round */
-  transition: background-color 0.3s, color 0.3s; /* Add transition for smoother hover effect */
+/* ReviewForm */
+.review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the form elements horizontally */
+  justify-content: center; /* Centers the form elements vertically for aesthetics */
+  max-width: 400px; /* Adjusts the max-width for a more balanced layout */
+  margin: 20px auto; /* Centers the form on the page and adds vertical spacing */
+  padding: 20px; /* Provides padding around the form elements */
+  border: 1px solid #ccc; /* Adds a subtle border around the form */
+  border-radius: 10px; /* Softens the edges of the form */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a light shadow for depth */
+  background-color: #f9f9f9; /* A light background color for the form */
 }
 
+.review-form input[type="text"],
+.review-form input[type="email"],
+.review-form textarea {
+  width: 100%; /* Ensures that input fields take up the full width of the form */
+  padding: 10px; /* Adds padding inside the input fields for better text visibility */
+  margin-bottom: 15px; /* Adds space between each form element */
+  border: 1px solid #ccc; /* Defines a subtle border for the input fields */
+  border-radius: 5px; /* Rounds the corners of the input fields */
+  box-sizing: border-box; /* Ensures padding does not affect the total width of the input fields */
+}
 
 .review-form input[type="text"]:focus,
 .review-form input[type="email"]:focus,
 .review-form textarea:focus {
-  background-color: yellow;
-  color: black;
-  border-radius: 50px; /* Make the buttons round */
+  outline: none; /* Removes the default focus outline */
+  border-color: #007bff; /* Changes the border color to highlight focus */
+  background-color: #e7f3ff; /* A light background color on focus for better visibility */
+  color: #333; /* Ensures text remains visible and clear */
 }
 
-.review-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically */
-  max-width: 300px; /* Adjust the max-width as needed */
-  margin: 0 auto; /* Center horizontally */
-  padding: 10px 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: grey;
-  color: yellow;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s; /* Add transition for smooth effect */
+.review-form input[type="text"]:hover,
+.review-form input[type="email"]:hover,
+.review-form textarea:hover {
+  background-color: #f3f3f3; /* A subtle change in background color on hover */
+  border-color: #bbb; /* Lightens the border color on hover for a responsive feel */
 }
 
+.review-form button {
+  width: auto; /* Allows the button to fit the text content */
+  padding: 10px 20px; /* Provides ample padding for clickable area */
+  background-color: #007bff; /* Button color that stands out */
+  color: white; /* Text color for legibility */
+  border: none; /* Removes the default border */
+  border-radius: 5px; /* Rounds the button edges */
+  cursor: pointer; /* Changes the cursor to a pointer to indicate clickability */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for visual feedback */
+}
 
-
-
-
-
+.review-form button:hover {
+  background-color: #0056b3; /* A darker shade for the button on hover */
+  color: #fff; /* Keeps the text color consistent for readability */
+}
 
 /* navbar css */
 .navbar {
@@ -331,10 +345,6 @@ main {
   text-decoration: none;
   color: black;
 }
-
-
-
-
 
 .navbar-wrapper {
   width: 100%; /* Make the navbar-wrapper take up the full width */
@@ -422,10 +432,9 @@ main {
 }
 
 .navbar ul li a:hover {
-  background-color: yellow;
+  background-color: orange;
   color: black;
 }
-
 
 /* sign up css */
 .signup-container {
@@ -469,7 +478,7 @@ main {
 .input-group input[type="text"]:hover,
 .input-group input[type="password"]:hover,
 .input-group input[type="email"]:hover {
-  background-color: yellow; /* Adjust the background color as needed */
+  background-color: orange; /* Adjust the background color as needed */
   color: black; /* Adjust the text color as needed */
 }
 
@@ -504,3 +513,259 @@ main {
   font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
 }
 
+/* login css */
+
+/* Container styles */
+.login-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px; /* Adjust the top margin as needed */
+  margin-bottom: 20px; /* Adjust the bottom margin as needed */
+  font-family: 'lucida sans unicode', sans-serif; /* 'Nosifer' is the custom font, fallback to sans-serif if 'Nosifer' is unavailable */
+}
+
+/* Text styles */
+.already-registered {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.already-registered a {
+  color: blue;
+}
+
+/* Input group styles */
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="email"] {
+  background-color: white; /* Adjust the background color as needed */
+  color: black; /* Adjust the text color as needed */
+  border-color: blue; /* Adjust the border color as needed */
+  border-radius: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.input-group input[type="text"]:hover,
+.input-group input[type="password"]:hover,
+.input-group input[type="email"]:hover {
+  background-color: orange; /* Adjust the background color as needed */
+  color: black; /* Adjust the text color as needed */
+}
+
+/* Error message styles */
+.error-message {
+  color: red;
+}
+
+/* Button styles */
+.login-button {
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.login-button:hover {
+  background-color: lightblue;
+  color: black;
+}
+
+/* New CSS */
+/* Succesful Message */
+
+.successful-login-container {
+  background-color: white; /* Aligns with other container backgrounds */
+  color: #333; /* A softer color for text, fitting your overall design */
+  border-radius: 10px; /* Consistent with your card design */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  max-width: 600px; /* Adjust as needed for your layout */
+  padding: 40px; /* Ample padding for aeration */
+  text-align: center; /* Center the text within */
+  margin: 100px auto 20px; /* Center the component in the viewport, adjust as needed */
+  transition: transform 0.3s ease-in-out; /* Smooth transition for interaction */
+}
+
+.successful-login-container h2 {
+  color: #007bff; /* Bright color for emphasis, matching your button colors */
+  margin-bottom: 20px; /* Space between the header and the paragraph */
+}
+
+.successful-login-container p {
+  margin-bottom: 30px; /* Space before the button */
+  color: #555; /* Slightly darker than the text for contrast */
+}
+
+.successful-login-container button {
+  background-color: #007bff; /* A vibrant color for action buttons */
+  color: white; /* Contrast color for legibility */
+  border: none;
+  border-radius: 20px; /* Rounded edges for a modern look */
+  padding: 10px 20px; /* Adequate padding for touch targets */
+  cursor: pointer; /* Pointer cursor on hover for affordance */
+  transition: background-color 0.3s, color 0.3s; /* Smooth color transition for interaction */
+}
+
+.successful-login-container button:hover {
+  background-color: lightblue; /* Lighter shade for hover state */
+  color: black; /* Color change for visual feedback */
+}
+
+/* UserAccount */
+/* Container for user account information and car addition form */
+.user-account-container {
+  background-color: #fff; /* White background */
+  color: #333; /* Dark text for readability */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  max-width: 600px; /* Restrict maximum width for layout consistency */
+  padding: 40px; /* Spacious padding for inner content */
+  text-align: center; /* Center-align the text */
+  margin: 50px auto; /* Center container on the page with vertical margin */
+}
+
+/* Styling for the form labels for clarity */
+.user-account-container form label {
+  display: block; /* Ensure label takes its own line */
+  margin-bottom: 8px; /* Space below each label */
+  text-align: left; /* Align text to the left for natural reading */
+  color: #333; /* Dark color for contrast against background */
+  font-weight: bold; /* Make labels bold for emphasis */
+}
+
+/* Uniform styling for input fields and textarea */
+.user-account-container form input,
+.user-account-container form textarea {
+  width: calc(100% - 20px); /* Full width minus padding */
+  padding: 10px; /* Comfortable padding inside fields */
+  margin-bottom: 20px; /* Space between each form field */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 5px; /* Slightly rounded corners for the input fields and textarea */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Enhanced visual feedback on focus */
+.user-account-container form input:focus,
+.user-account-container form textarea:focus {
+  border-color: #007bff; /* Highlight color */
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25); /* Subtle glow effect */
+  outline: none; /* Remove default focus outline */
+}
+
+/* Style adjustments for buttons within the user account container */
+.user-account-container button {
+  background-color: #007bff; /* Primary action color */
+  color: #fff; /* White text for contrast */
+  border: none; /* No border */
+  border-radius: 20px; /* Rounded corners for the buttons */
+  padding: 12px 24px; /* Generous padding for easier interaction */
+  margin-top: 10px; /* Margin at the top for spacing */
+  cursor: pointer; /* Cursor indicates button */
+  transition: background-color 0.2s, color 0.2s; /* Smooth transition for visual feedback */
+  font-size: 16px; /* Readable font size */
+  font-weight: bold; /* Bold font for emphasis */
+}
+
+/* Hover effect for buttons to indicate interactivity */
+.user-account-container button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.user-account-container {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center-align children horizontally */
+  /* Other styles remain unchanged */
+}
+
+.user-account-container form {
+  order: 1; /* Making the form appear above the button(s) */
+}
+
+.user-account-container button {
+  order: 2; /* The button will appear below the form */
+}
+
+.user-account-container .success-message {
+  background-color: #cce5ff; /* Light blue background for success */
+  color: #004085; /* Dark blue text for high readability */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #b8daff; /* Subtle blue border */
+  padding: 10px 20px; /* Comfortable padding */
+  margin-bottom: 20px; /* Separate it from the rest of the form */
+  text-align: center; /* Center-aligned text */
+  font-size: 16px; /* Consistent font size */
+  font-weight: bold; /* Bold font for emphasis */
+  width: 100%; /* Take full width of the container */
+  box-sizing: border-box; /* Include padding and border in width */
+}
+
+.user-account-container img {
+  display: block;
+  margin: 20px auto; /* Auto margins to center the image */
+  max-width: 200px; /* Consistent width for the image preview */
+  height: auto;
+  border-radius: 4px;
+}
+
+
+/* Review List */
+li button {
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  margin: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+li button:hover {
+  background-color: #0056b3;
+}
+
+.review-list {
+  list-style: none; /* Removes the default list style, including bullet points */
+  padding-left: 0; /* Removes the default padding, aligning items to the left */
+  margin: 0; /* Removes default margin */
+}
+
+/* Style for individual reviews */
+.review-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+/* Style for review author */
+.review-author {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Style for review content */
+.review-content {
+  margin-bottom: 5px;
+}

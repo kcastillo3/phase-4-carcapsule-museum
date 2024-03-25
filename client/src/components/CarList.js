@@ -1,43 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import CarCard from './CarCard';
+import '../index.css';
 
-const CarList = () => {
+// Accept both userId and username as props
+const CarList = ({ userId, username }) => {
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        const response = await fetch('http://localhost:5555/cars_list');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setCars(data);
+      } catch (error) {
+        console.error('Error fetching cars:', error);
+      }
+    };
+
     fetchCars();
   }, []);
-
-  const fetchCars = async () => {
-    try {
-      const response = await fetch('/cars_list');
-      if (!response.ok) {
-        throw new Error('Failed to fetch cars');
-      }
-      const data = await response.json();
-      setCars(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const fetchCarDetails = async (carId) => {
-    try {
-      const response = await fetch(`/cars_list/${carId}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch car details');
-      }
-      const data = await response.json();
-      console.log('Car details:', data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <div className="carList">
       {cars.map((car) => (
-        <CarCard key={car.id} car={car} fetchCarDetails={fetchCarDetails} />
+        <CarCard key={car.id} car={car} />
+        
       ))}
     </div>
   );

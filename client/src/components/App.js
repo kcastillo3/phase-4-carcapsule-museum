@@ -6,25 +6,36 @@ import CarPage from './CarPage';
 import Login from './Login';
 import SignUp from './SignUp';
 import SuccessfulLogin from './SuccessfulLogin';
-import UserAccount from './UserAccount'; // Made sure to import UserAccount
+import UserAccount from './UserAccount';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const [userId, setUserId] = useState(localStorage.getItem('userId') || null); 
+  const [username, setUsername] = useState(localStorage.getItem('username') || '');
 
-  // This function now only sets the loggedIn state to true
-  const handleLogin = () => {
+  const handleLogin = (userIdParam, usernameParam) => {
     setIsLoggedIn(true);
+    setUserId(userIdParam); 
+    setUsername(usernameParam); 
+    localStorage.setItem('userId', userIdParam);
+    localStorage.setItem('username', usernameParam);
   };
-
-  // This function now only sets the loggedIn state to false
+  
   const handleLogout = () => {
-    // This function should update the state and cause a re-render
     setIsLoggedIn(false);
+    setUserId(null);
+    setUsername('');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('username');
   };
 
-  // This function now only sets the loggedIn state to true
-  const handleSignUp = () => {
+  const handleSignUp = (userIdParam, usernameParam) => {
+    
     setIsLoggedIn(true);
+    setUserId(userIdParam);
+    setUsername(usernameParam);
+    localStorage.setItem('userId', userIdParam);
+    localStorage.setItem('username', usernameParam);
   };
 
   return (
@@ -33,12 +44,11 @@ const App = () => {
         <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/car" component={CarPage} />
+          <Route path="/car" render={(props) => <CarPage {...props} userId={userId} username={username} />} />
           <Route path="/login" render={(props) => isLoggedIn ? <Redirect to="/" /> : <Login {...props} onLogin={handleLogin} />} />
           <Route path="/signup" render={(props) => isLoggedIn ? <Redirect to="/" /> : <SignUp {...props} onSignUp={handleSignUp} />} />
           <Route path="/login-success" render={(props) => isLoggedIn ? <SuccessfulLogin {...props} /> : <Redirect to="/login" />} />
-          <Route path="/user-account" render={(props) => ( <UserAccount {...props} isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-)} />          {/* Ensured there's a route for UserAccount */}
+          <Route path="/user-account" render={(props) => <UserAccount {...props} isLoggedIn={isLoggedIn} onLogout={handleLogout} userId={userId} />} />
         </Switch>
       </div>
     </Router>
@@ -46,3 +56,4 @@ const App = () => {
 };
 
 export default App;
+
