@@ -170,12 +170,17 @@ def register_user():
     # Hash the password
     password_hash = generate_password_hash(password)
 
-#     # Create and add new user to database
+    # Create and add new user to database
     new_user = Users(email=email, username=username, password_hash=password_hash)
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({'message': 'User registered successfully'}), 201
+    # Return user_id and username along with success message
+    return jsonify({
+        'message': 'User registered successfully',
+        'user_id': new_user.id,
+        'username': new_user.username
+    }), 201
 
 # Log in an existing user
 @app.route('/users/login', methods=['POST'])
