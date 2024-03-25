@@ -34,26 +34,22 @@ const SignUp = ({ onSignUp }) => {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-              email: values.email,
-              username: values.username,
-              password: values.password,
-            }),
+            body: JSON.stringify(values),
           })
-          .then(response => {
+          .then(async response => {
             if (!response.ok) {
               throw new Error('Signup failed');
             }
-            return response.json();
-          })
-          .then(data => {
-            console.log('User signed up:', data);
-            onSignUp(); // This could be a function to update state indicating the user is now signed in
+            const data = await response.json();
+            // Use the response data to update app state and redirect
+            onSignUp(data.user_id, data.username); // Now correctly passing parameters
             setSubmitting(false);
-            history.push('/login-success'); // Redirect to a success page or dashboard
+            history.push('/login-success');
           })
           .catch(error => {
             console.error('Error during signup:', error);
+            alert('Failed to sign up. Please try again.');
+            setSubmitting(false);
           });
         }}
       >

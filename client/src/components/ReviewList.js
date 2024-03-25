@@ -1,70 +1,63 @@
 import React, { useState, useEffect } from 'react';
 
-const ReviewList = ({ carId }) => {
+const ReviewList = ({ carId, userId, username, reviewRefreshTrigger }) => {
   const [reviews, setReviews] = useState([]);
-  const [replyTexts, setReplyTexts] = useState({}); // Manage reply texts for each review
+  const [editingReviewId, setEditingReviewId] = useState(null);
+  const [editingContent, setEditingContent] = useState('');
 
   useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const response = await fetch(`http://localhost:5555/review_list/${carId}`);
-        if (!response.ok) throw new Error('Failed to fetch reviews');
-        
-        const reviewsData = await response.json();
-        setReviews(reviewsData);
-        // Initialize reply texts for fetched reviews
-        const initialReplyTexts = reviewsData.reduce((acc, review) => ({...acc, [review.id]: ''}), {});
-        setReplyTexts(initialReplyTexts);
-      } catch (error) {
-        console.error('Error fetching reviews:', error);
+    const fetchReviews = async () => { // Moved fetchReviews inside useEffect
+      const response = await fetch(`http://localhost:5555/review_list/${carId}`);
+      if (response.ok) {
+        const data = await response.json();
+        setReviews(data);
+      } else {
+        console.error('Failed to fetch reviews');
       }
     };
 
     fetchReviews();
-  }, [carId]);
+  }, [carId, reviewRefreshTrigger]); // React to changes in carId or reviewRefreshTrigger
 
   const updateReview = async (id, updatedContent) => {
-    try {
-      const response = await fetch(`http://localhost:5555/review_list/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ review: updatedContent }),
-      });
-      if (!response.ok) throw new Error('Network response was not ok');
-      // Refreshing the local state to reflect the update
-      setReviews(reviews.map(review => review.id === id ? { ...review, review: updatedContent } : review));
-    } catch (error) {
-      console.error('Error:', error);
+    const response = await fetch(`http://localhost:5555/review_list/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: updatedContent }),
+    });
+    if (response.ok) {
+      setEditingReviewId(null); // Exit edit mode
+      const fetchReviews = async () => { // Re-fetch reviews after update
+        const response = await fetch(`http://localhost:5555/review_list/${carId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setReviews(data);
+        }
+      };
+      fetchReviews();
+    } else {
+      console.error('Failed to update review');
     }
   };
 
   const deleteReview = async (id) => {
     try {
+      // Attempting to delete the review on the backend
       const response = await fetch(`http://localhost:5555/review_list/${id}`, { method: 'DELETE' });
-      if (!response.ok) throw new Error('Network response was not ok');
-      // Refreshing the local state to reflect the deletion
-      setReviews(reviews.filter(review => review.id !== id));
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
-  const handleReplyChange = (id, text) => {
-    setReplyTexts({ ...replyTexts, [id]: text });
-  };
-
-  const handleReply = (id) => {
-    const updatedReviews = reviews.map(review => {
-      if (review.id === id) {
-        return {
-          ...review,
-          replies: [...(review.replies || []), replyTexts[id]]
-        };
+  
+      if (!response.ok) {
+        // If the backend responds with an error, log it and optionally show an error message to the user
+        console.error('Failed to delete review');
+        throw new Error('Failed to delete review');
       }
-      return review;
-    });
-    setReviews(updatedReviews);
-    setReplyTexts({ ...replyTexts, [id]: '' });
+  
+      // If the deletion was successful, update the local state to reflect the change
+      const remainingReviews = reviews.filter(review => review.id !== id);
+      setReviews(remainingReviews);
+    } catch (error) {
+      console.error('Deletion failed', error);
+      // Here you might want to notify the user that the deletion failed
+    }
   };
 
   return (
@@ -73,21 +66,25 @@ const ReviewList = ({ carId }) => {
       <ul>
         {reviews.map((review) => (
           <li key={review.id}>
-            <div>{review.review}</div>
-            <ul>
-              {review.replies && review.replies.map((reply, replyIndex) => (
-                <li key={replyIndex}>{reply}</li>
-              ))}
-            </ul>
-            <textarea 
-              placeholder="Reply..." 
-              value={replyTexts[review.id]} 
-              onChange={(e) => handleReplyChange(review.id, e.target.value)}
-            ></textarea>
-            <button onClick={() => handleReply(review.id)}>Submit Reply</button>
-            {/* Update and Delete buttons for each review */}
-            <button onClick={() => updateReview(review.id, review.review)}>Update Review</button>
-            <button onClick={() => deleteReview(review.id)}>Delete Review</button>
+            <strong>{review.username || 'A user'} says:</strong>
+            {editingReviewId === review.id ? (
+              <form onSubmit={(e) => { e.preventDefault(); updateReview(review.id, editingContent); }}>
+                <textarea 
+                  value={editingContent} 
+                  onChange={(e) => setEditingContent(e.target.value)}
+                ></textarea>
+                <button type="submit">Save</button>
+                <button onClick={() => setEditingReviewId(null)}>Cancel</button>
+              </form>
+            ) : (
+              <div>{review.content}</div>
+            )}
+            {review.user_id === userId && editingReviewId !== review.id && (
+              <>
+                <button onClick={() => { setEditingReviewId(review.id); setEditingContent(review.content); }}>Edit</button>
+                <button onClick={() => deleteReview(review.id)}>Delete</button>
+              </>
+            )}
           </li>
         ))}
       </ul>
