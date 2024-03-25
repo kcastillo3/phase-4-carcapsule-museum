@@ -87,9 +87,6 @@ main {
   margin: 20px auto; /* Center the video horizontally and add some margin */
 }
 
-
-
-
 .home-container p {
   margin-bottom: 20px;
   display: flex;
@@ -163,7 +160,6 @@ main {
   background-repeat: repeat; /* Repeat the background image */
 
 }
-
 
 /* car card css */
 .car-card {
@@ -313,12 +309,6 @@ main {
   background-color: #0056b3; /* A darker shade for the button on hover */
   color: #fff; /* Keeps the text color consistent for readability */
 }
-
-
-
-
-
-
 
 /* navbar css */
 .navbar {
@@ -728,6 +718,14 @@ main {
   box-sizing: border-box; /* Include padding and border in width */
 }
 
+.user-account-container img {
+  display: block;
+  margin: 20px auto; /* Auto margins to center the image */
+  max-width: 200px; /* Consistent width for the image preview */
+  height: auto;
+  border-radius: 4px;
+}
+
 
 /* Review List */
 li button {
@@ -750,4 +748,24 @@ li button:hover {
   list-style: none; /* Removes the default list style, including bullet points */
   padding-left: 0; /* Removes the default padding, aligning items to the left */
   margin: 0; /* Removes default margin */
+}
+
+/* Style for individual reviews */
+.review-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+/* Style for review author */
+.review-author {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Style for review content */
+.review-content {
+  margin-bottom: 5px;
 }

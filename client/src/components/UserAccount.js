@@ -12,6 +12,7 @@ const UserAccount = ({ isLoggedIn, onLogout, addCarToList }) => {
     imageUrl: '',  // Ensuring this field is included for the image URL
   });
   const [submitSuccess, setSubmitSuccess] = useState(false); // State to track successful submission
+  const [imagePreview, setImagePreview] = useState(''); // State to store image preview URL
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -22,6 +23,9 @@ const UserAccount = ({ isLoggedIn, onLogout, addCarToList }) => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setCar(prevState => ({ ...prevState, [name]: value }));
+    if (name === 'imageUrl') {
+      setImagePreview(value);
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -52,6 +56,7 @@ const UserAccount = ({ isLoggedIn, onLogout, addCarToList }) => {
         description: '',
         imageUrl: '',
       });
+      setImagePreview(''); // Clear image preview
     } else {
       // Handle server errors or invalid inputs
       console.error("Failed to add car");
@@ -127,6 +132,7 @@ const UserAccount = ({ isLoggedIn, onLogout, addCarToList }) => {
             required
           />
         </label>
+        {imagePreview && <img src={imagePreview} alt="Car Preview" style={{ maxWidth: '200px' }} />} {/* Show image preview */}
         <button type="submit">Add Car</button>
       </form>
     </div>
