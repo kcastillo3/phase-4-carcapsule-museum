@@ -49,7 +49,7 @@ const Login = ({ onLogin, isLoggedIn }) => {
           })
           .then(data => {
             console.log('Login successful:', data);
-            // Assuming the login was successful, and we have implemented the onLogin function
+            // Assuming our login was successful, and we implemented the onLogin function
             // correctly in our App component or where it's being passed as props
             onLogin(data.user_id, data.username); // Update application state with user info
             history.push('/login-success'); // Redirect to the SuccessfulLogin component

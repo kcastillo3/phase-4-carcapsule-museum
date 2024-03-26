@@ -64,32 +64,45 @@ const ReviewList = ({ carId, userId, username, reviewRefreshTrigger }) => {
     <div>
       <h3>Reviews</h3>
       <ul>
-        {reviews.map((review) => (
-          <li key={review.id}>
-            <strong>{review.username || 'A user'} says:</strong>
-            {editingReviewId === review.id ? (
-              <form onSubmit={(e) => { e.preventDefault(); updateReview(review.id, editingContent); }}>
-                <textarea 
-                  value={editingContent} 
-                  onChange={(e) => setEditingContent(e.target.value)}
-                ></textarea>
-                <button type="submit">Save</button>
-                <button onClick={() => setEditingReviewId(null)}>Cancel</button>
-              </form>
-            ) : (
-              <div>{review.content}</div>
-            )}
-            {review.user_id === userId && editingReviewId !== review.id && (
-              <>
-                <button onClick={() => { setEditingReviewId(review.id); setEditingContent(review.content); }}>Edit</button>
-                <button onClick={() => deleteReview(review.id)}>Delete</button>
-              </>
-            )}
-          </li>
-        ))}
+        {reviews.map((review) => {
+          const isEditing = editingReviewId === review.id;
+          const canEditDelete = parseInt(review.user_id, 10) === parseInt(userId, 10);
+  
+          const handleUpdateButtonClick = () => {
+            setEditingReviewId(review.id);
+            setEditingContent(review.content);
+          };
+  
+          return (
+            <li key={review.id}>
+              <strong>{review.username || 'A user'} says:</strong>
+              {isEditing ? (
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  updateReview(review.id, editingContent);
+                }}>
+                  <textarea 
+                    value={editingContent}
+                    onChange={(e) => setEditingContent(e.target.value)}
+                  />
+                  <button type="submit">Save</button>
+                  <button type="button" onClick={() => setEditingReviewId(null)}>Cancel</button>
+                </form>
+              ) : (
+                <div>{review.content}</div>
+              )}
+              {canEditDelete && !isEditing && (
+                <>
+                  <button type="button" onClick={handleUpdateButtonClick}>Update</button>
+                  <button type="button" onClick={() => deleteReview(review.id)}>Delete</button>
+                </>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
-};
+}
 
 export default ReviewList;
