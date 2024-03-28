@@ -111,9 +111,31 @@ User—< Review >—Car
 
 This project was made possible through the collective efforts of our dedicated team members:
 
-- Kevin Castillo
-- Desiah Barnett
-- Batsheva Parshan
-- Thomas Korley
+- **Kevin Castillo**
+- **Desiah Barnett**
+- **Batsheva Parshan**
+- **Thomas Korley**
 
 Who have contributed to the development of "Car Capsule Museum."
+
+### Batsheva Parshan (BP):
+- `App.js`
+- `Header.js`
+- `NavBar.js`
+
+### Desiah Barnett (DB):
+- `Home.js`
+- `CarPage.js`
+- `CarList.js`
+
+### Thomas Korley (TK):
+- `CarCard.js`
+- `ReviewForm.js`
+- `ReviewList.js`
+
+### Kevin Castillo (KC):
+- `Login.js`
+- `UserAccount.js`
+- `Logout.js`
+- `SignUp.js`
+- `SuccessfulLogin.js`
