@@ -1,5 +1,6 @@
 # Car Capsule Museum
 <img width="1440" alt="Screenshot 2024-03-27 at 8 25 17 PM" src="https://github.com/kcastillo3/phase-4-carcapsule-museum/assets/134651057/bc13f49a-abbe-4184-8da3-d1fbecb4fead">
+
 <img width="1440" alt="Screenshot 2024-03-27 at 8 36 17 PM" src="https://github.com/kcastillo3/phase-4-carcapsule-museum/assets/134651057/5f462b64-f104-4183-9317-b586a458c30f">
 
 ## Table of Contents
