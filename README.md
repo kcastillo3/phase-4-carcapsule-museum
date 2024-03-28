@@ -122,16 +122,21 @@ Who have contributed to the development of "Car Capsule Museum."
 - `App.js`
 - `Header.js`
 - `NavBar.js`
+- `Models.py`
+- `App.py`
 
 ### Desiah Barnett (DB):
 - `Home.js`
 - `CarPage.js`
 - `CarList.js`
+- `Seed.py`
+- `App.py`
 
 ### Thomas Korley (TK):
 - `CarCard.js`
 - `ReviewForm.js`
 - `ReviewList.js`
+- `App.py`
 
 ### Kevin Castillo (KC):
 - `Login.js`
@@ -139,3 +144,4 @@ Who have contributed to the development of "Car Capsule Museum."
 - `Logout.js`
 - `SignUp.js`
 - `SuccessfulLogin.js`
+- `App.py`
