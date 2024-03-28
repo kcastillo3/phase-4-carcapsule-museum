@@ -136,6 +136,7 @@ Who have contributed to the development of "Car Capsule Museum."
 - `CarCard.js`
 - `ReviewForm.js`
 - `ReviewList.js`
+- `Models.py`
 - `App.py`
 
 ### Kevin Castillo (KC):
